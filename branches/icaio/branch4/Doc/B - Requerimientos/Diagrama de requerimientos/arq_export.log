@@ -1,0 +1,21 @@
+Exporting package to 'C:\Users\Marcos\Desktop\tortoise\trunk\Doc\B - Requerimientos\Diagrama de requerimientos\arq.xml'
+Retrieving data for export: diagram elements
+Retrieving data for export: links
+Retrieving data for export: constraints
+Retrieving data for export: attribute tagged values
+Retrieving data for export: operation tagged values
+Retrieving data for export: operation parameter tagged values
+Retrieving data for export: connector tagged values
+Completed data retrieval
+Pre-processing export tree...
+Completed pre-processing
+Processing package: Arquitectura
+Diagram: Arquitectura
+Element:0: Ciudad
+Element:1: Cliente
+Element:2: Interfaz grafica
+Element:3: Servidor
+Element:4: Sopa de letras
+Sequencing Interaction Diagrams
+Formatting output XML...please wait
+XMI Document Export Complete!
