@@ -4,11 +4,6 @@ import java.util.ArrayList;
 public class mapa {
 	
 	private ConcurrentHashMap<String, ArrayList<auto>> mapa;
-	/*
-	 * -1 ---> inaccesible
-	 *  0 ---> accesible
-	 *  n --->
-	 */
 	private gui interfaz;
 	private int lims;
 	
