@@ -163,7 +163,7 @@ public class auto extends Thread {
 			break;    
 		}
 		step = (step + 1) % 4;
-		map.refresh(anty,antx,pos.get_posy(),pos.get_posy(),this);
+		map.refresh(anty,antx,pos.get_posy(),pos.get_posx(),this);
 	}
 
 	private void mov_derecha()
