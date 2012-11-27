@@ -9,6 +9,7 @@ public class auto extends Thread {
 	private movetype move;
 	private int lims;
 	private int step;
+	private int route;
 	private int id;
 	
 	auto(mapa map, int posy, int posx, int retardo, boolean sobrey, int lims,int id)
@@ -22,6 +23,7 @@ public class auto extends Thread {
 		this.step=0;
 		this.pory = sobrey;
 		this.id = id;
+		this.route = 0;
 	}
 
 
@@ -42,10 +44,8 @@ public class auto extends Thread {
 
 	private boolean esEsquina()
 	{
-		if( (pos.get_posx()==5 && pos.get_posy()==4) || (pos.get_posx()==6 && pos.get_posy()==4)  
-				|| (pos.get_posx()==7 && pos.get_posy()==5) || (pos.get_posx()==7 && pos.get_posy()==6)
-				|| (pos.get_posx()==6 && pos.get_posy()==7) || (pos.get_posx()==5 && pos.get_posy()==7)
-				|| (pos.get_posx()==4 && pos.get_posy()==6) || (pos.get_posx()==4 && pos.get_posy()==5)) {
+		if( (pos.get_posx()==5 && pos.get_posy()==4) || (pos.get_posx()==7 && pos.get_posy()==5)
+				|| (pos.get_posx()==6 && pos.get_posy()==7) || (pos.get_posx()==4 && pos.get_posy()==6) ) {
 			return true;
 		}
 		else {
@@ -55,9 +55,10 @@ public class auto extends Thread {
 	public void moveforward()
 	{
 		int ant;
-
+		
 		// verifico si estoy por entrar a una esquina:
 			if( esEsquina() ){
+				
 				movesomehow();}
 			else if(pory)
 			{
@@ -116,19 +117,23 @@ public class auto extends Thread {
 		{
 			step = 0;
 			// DEFINICION TIPO DE MOVIMIENTO
-			Random r1 = new Random(354);
+			Random r1 = new Random();
 			int movet;
-			//movet = r1.nextInt(3);
-			
-			movet = 0;
+			movet = r1.nextInt(3);
 			
 			
 			if(movet == 0){
 				this.move = movetype.DERECHA;}
-			else if(movet ==1){
+			else if(movet == 1){
 				this.move = movetype.DERECHO;}
 			else{
 				this.move = movetype.IZQUIERDA;}
+			//  indicacion de tipo de ruta:
+			if(pos.get_posx() % 2 != 0)
+				route = 1;
+			else if(pos.get_posy() % 2 == 0 )
+				route= 2;
+			
 			// obtencion de monitor indicado
 			//mont = map.get_cruce(pos);
 
@@ -162,22 +167,25 @@ public class auto extends Thread {
 			//devolver recurso desocupado 
 			break;    
 		}
-		step = (step + 1) % 4;
+		
 		map.refresh(anty,antx,pos.get_posy(),pos.get_posx(),this);
 	}
 
 	private void mov_derecha()
 	{
+		
 		if(pory ) { // por y
 			if(pos.get_posx() % 2 != 0){ // para abajo
 				switch(step){
 				case 0:
 					pos.set_posy((pos.get_posy()+1) %lims);
+					step++;
 					break;
 				case 1:
 					pos.set_posx((pos.get_posx() - 1) % lims); 
 					pory = false;
-					this.move = movetype.COMON;   
+					this.move = movetype.COMON; 
+					step=0;
 					break;
 				}
 			}
@@ -185,11 +193,13 @@ public class auto extends Thread {
 				switch(step){
 				case 0:
 					pos.set_posy((pos.get_posy() -1 )%lims);
+					step++;
 					break;
 				case 1:
 					pos.set_posx((pos.get_posx() + 1) % lims); 
 					pory = false;
 					this.move = movetype.COMON;
+					step=0;
 					break;
 				}
 			}
@@ -200,11 +210,13 @@ public class auto extends Thread {
 				switch(step){
 				case 0:
 					pos.set_posx( (pos.get_posx() +1 ) % lims);
+					step++;
 					break;
 				case 1:
 					pos.set_posy( (pos.get_posy() + 1) % lims );
 					pory = true;
 					this.move = movetype.COMON;
+					step=0;
 					break;
 				}
 			}
@@ -212,11 +224,13 @@ public class auto extends Thread {
 				switch(step){
 				case 0:
 					pos.set_posx( (pos.get_posx() - 1 ) % lims);
+					step++;
 					break;
 				case 1:
 					pos.set_posy( (pos.get_posy() - 1) % lims );
 					pory = true;
 					this.move = movetype.COMON;
+					step=0;
 					break;
 				}
 			}
@@ -229,10 +243,12 @@ public class auto extends Thread {
 				switch(step){
 				case 0:
 					pos.set_posy((pos.get_posy()+1) %lims);
+					step++;
 					break;
 				case 1:
 					pos.set_posy((pos.get_posy()+1) %lims); 
 					this.move = movetype.COMON;
+					step=0;
 					break;
 				}
 			}
@@ -240,10 +256,12 @@ public class auto extends Thread {
 				switch(step){
 				case 0:
 					pos.set_posy((pos.get_posy() -1 )%lims);
+					step++;
 					break;
 				case 1:
 					pos.set_posy((pos.get_posy() - 1) % lims); 
 					this.move = movetype.COMON;
+					step=0;
 					break;
 				}
 			}
@@ -254,10 +272,12 @@ public class auto extends Thread {
 				switch(step){
 				case 0:
 					pos.set_posx( (pos.get_posx() +1 ) % lims);
+					step++;
 					break;
 				case 1:
 					pos.set_posx( (pos.get_posx() + 1) % lims );
 					this.move = movetype.COMON;
+					step=0;
 					break;
 				}
 			}
@@ -265,10 +285,12 @@ public class auto extends Thread {
 				switch(step){
 				case 0:
 					pos.set_posx( (pos.get_posx() - 1 ) % lims);
+					step++;
 					break;
 				case 1:
 					pos.set_posx( (pos.get_posx () - 1) % lims );
 					this.move = movetype.COMON;
+					step=0;
 					break;
 				}
 			}      
@@ -277,22 +299,30 @@ public class auto extends Thread {
 
 	private void mov_izquierda()
 	{
+		
+		
 		if(pory ) { // por y
-			if(pos.get_posx() % 2 != 0){ // para abajo
+			if(route == 1){ // para abajo
 				switch(step){
 				case 0:
 					pos.set_posy((pos.get_posy()+1) %lims);
+					step++;
 					break;
 				case 1:
 					pos.set_posy((pos.get_posy()+1) %lims); 
+					step++;
 					break;
 				case 2:
-					pos.set_posx( (pos.get_posx() + 1 ) % lims); 
+					pos.set_posx( (pos.get_posx() + 1 ) % lims);
+					step++;
 					break;
 				case 3:
 					pos.set_posx( (pos.get_posx() + 1 % lims));
 					move= movetype.COMON;
-					pory= !pory;
+					pory= false;
+					route = 0;
+					step=0;
+					
 					break;    
 				}
 			}
@@ -300,55 +330,76 @@ public class auto extends Thread {
 				switch(step){
 				case 0:
 					pos.set_posy((pos.get_posy() - 1 )%lims);
+					step++;
 					break;
 				case 1:
 					pos.set_posy((pos.get_posy() - 1 )%lims);
+					step++;
 					break;
 				case 2:
 					pos.set_posx((pos.get_posx() - 1 )%lims );
+					step++;
 					break;
 				case 3:
 					pos.set_posx((pos.get_posx() - 1 )%lims);
 					move = movetype.COMON;
-					pory= !pory;
+					pory= false;
+					step=0;
 					break;      
 				}
 			}
 		}
 		else // por x
 		{    
-			if(pos.get_posy() % 2 == 0){ // para la derecha
+			if(route == 2){ // para la derecha
 				switch(step){
 				case 0:
+					route = 1;
 					pos.set_posx( (pos.get_posx()+1 ) % lims);
+					step++;
 					break;
 				case 1:
 					pos.set_posx( (pos.get_posy()+ 1) % lims );
+					step++;
 					break;
 				case 2:
 					pos.set_posy( (pos.get_posy()-1) % lims );
+					step++;
 					break;
 				case 3:
 					pos.set_posy( (pos.get_posy()-1) %lims);
 					move = movetype.COMON;
-					pory = !pory;          
+					step=0;
+					route = 0;
+					pory = true;  
+					route = 0;
+					break;
 				}
 			}
 			else{ // para la izquierda
 				switch(step){
 				case 0:
-					pos.set_posx( (pos.get_posx()-1) % lims);
+					pos.set_posx( (pos.get_posx()-1) );
+					
+					step++;
 					break;
 				case 1:
-					pos.set_posx( (pos.get_posy()- 1) % lims );
+					pos.set_posx( (pos.get_posx()- 1)  );
+					
+					step++;
 					break;
 				case 2:
-					pos.set_posy( (pos.get_posy()+1) % lims );
+					pos.set_posy( (pos.get_posy()+1) );
+					
+					step++;
 					break;
 				case 3:
-					pos.set_posy( (pos.get_posy()+1) %lims);
+					pos.set_posy( (pos.get_posy()+1));
+					
 					move = movetype.COMON;
-					pory = !pory;          
+					pory = true;
+					step =0;
+					break;
 				}
 			}
 		}
