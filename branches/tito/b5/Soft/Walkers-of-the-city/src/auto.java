@@ -1,25 +1,40 @@
 
 public class auto extends Thread {
 	
-	private gui interfaz;
-	private int posx;
-	private int posy;
+	private mapa map;
+	private coords pos;
 	private int retardo;
 	private boolean sobrey;
 	private enum movetype {COMON, DERECHO, DERECHA, IZQUIERDA};
 	private movetype move;
 	private int lims;
+	private int id;
 	
-	auto(gui interfaz, int posy, int posx, int retardo, boolean sobrey, int lims)
+	auto(mapa map, int posy, int posx, int retardo, boolean sobrey, int lims, int id)
 	{
-		this.interfaz = interfaz;
-		this.posx = posx;
-		this.posy = posy;
-		interfaz.place(posy,posx);
+		this.map = map;
+		this.pos = new coords(posx, posy);
+		//interfaz.place(posy,posx);
 		this.retardo = retardo;
 		this.sobrey = sobrey;
 		this.move = movetype.COMON;
 		this.lims = lims;
+		this.id = id;
+	}
+	
+	public String toString()
+	{
+		return "Auto id = " + Integer.toString(id);
+	}
+	
+	public int get_id()
+	{
+		return id;
+	}
+	
+	public coords get_coords()
+	{
+		return pos;
 	}
 	
 	public void move()
@@ -35,35 +50,35 @@ public class auto extends Thread {
 		int ant;
 		if(sobrey)
 		{
-			if(posx % 2 != 0) //va para abajo
+			if(pos.get_posx() % 2 != 0) //va para abajo
 			{
-				ant = posy;
-				posy = (posy+1)%lims;
+				ant = pos.get_posy();
+				pos.set_posy((pos.get_posy()+1)%lims);
 			}
 			else
 			{
-				ant = posy;
-				posy = (posy-1);
-				if(posy<0)
-					posy = lims-1;
+				ant = pos.get_posy();
+				pos.set_posy((pos.get_posy()-1));
+				if(pos.get_posy()<0)
+					pos.set_posy(lims-1);
 			}
-			interfaz.refresh(ant, posx, posy, posx);
+			map.refresh(ant, pos.get_posx(), pos.get_posy(), pos.get_posx(), this);
 		}
 		else
 		{
-			if(posy % 2 != 0) //va para la izquierda
+			if(pos.get_posy() % 2 != 0) //va para la izquierda
 			{
-				ant = posx;
-				posx = (posx+1)%lims;
+				ant = pos.get_posx();
+				pos.set_posx((pos.get_posx()+1)%lims);
 			}
 			else
 			{
-				ant = posx;
-				posx = (posx-1);
-				if(posx<0)
-					posx = lims-1;
+				ant = pos.get_posx();
+				pos.set_posx((pos.get_posx()-1));
+				if(pos.get_posx()<0)
+					pos.set_posx(lims-1);
 			}
-			interfaz.refresh(posy, ant, posy, posx);
+			map.refresh(pos.get_posy(), ant, pos.get_posy(), pos.get_posx(), this);
 		}
 	}
 	
