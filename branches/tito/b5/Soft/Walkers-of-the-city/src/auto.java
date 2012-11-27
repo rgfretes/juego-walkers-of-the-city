@@ -77,7 +77,7 @@ public class auto extends Thread {
 			}
 			else // es por x
 			{
-				if(pos.get_posy() % 2 != 0) //va para la izquierda
+				if(pos.get_posy() % 2 == 0) //va para la derecha
 				{
 					ant = pos.get_posx();
 					pos.set_posx((pos.get_posx()+1)%lims);
