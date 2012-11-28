@@ -116,23 +116,32 @@ public class auto extends Thread {
 		if(this.move == movetype.COMON)
 		{
 			step = 0;
+			route  = 0;
+			
 			// DEFINICION TIPO DE MOVIMIENTO
 			Random r1 = new Random();
 			int movet;
 			movet = r1.nextInt(3);
 			
 			
+			 //forzar movimiento
+			//movet = 2;
+			
+			//ESTABLECIMIENTO DEL MOVETYPE
 			if(movet == 0){
 				this.move = movetype.DERECHA;}
 			else if(movet == 1){
 				this.move = movetype.DERECHO;}
 			else{
-				this.move = movetype.IZQUIERDA;}
-			//  indicacion de tipo de ruta:
-			if(pos.get_posx() % 2 != 0)
-				route = 1;
-			else if(pos.get_posy() % 2 == 0 )
-				route= 2;
+				this.move = movetype.IZQUIERDA;
+				//  indicacion de tipo de ruta:
+				if(pos.get_posx() % 2 != 0 && pory == true)
+					route = 1;
+				else if(pos.get_posy() % 2 == 0 && pory == false)
+					route= 2;
+				}
+			
+			
 			
 			// obtencion de monitor indicado
 			//mont = map.get_cruce(pos);
@@ -301,32 +310,30 @@ public class auto extends Thread {
 	{
 		
 		
-		if(pory ) { // por y
-			if(route == 1){ // para abajo
+		if(pory && route == 1){ // para abajo
 				switch(step){
-				case 0:
-					pos.set_posy((pos.get_posy()+1) %lims);
-					step++;
-					break;
-				case 1:
-					pos.set_posy((pos.get_posy()+1) %lims); 
-					step++;
-					break;
-				case 2:
-					pos.set_posx( (pos.get_posx() + 1 ) % lims);
-					step++;
-					break;
-				case 3:
-					pos.set_posx( (pos.get_posx() + 1 % lims));
-					move= movetype.COMON;
-					pory= false;
-					route = 0;
-					step=0;
-					
-					break;    
-				}
+					case 0:
+						pos.set_posy((pos.get_posy()+1) %lims);
+						step++;
+						break;
+					case 1:
+						pos.set_posy((pos.get_posy()+1) %lims); 
+						step++;
+						break;
+					case 2:
+						pos.set_posx( (pos.get_posx() + 1 ) % lims);
+						step++;
+						break;
+					case 3:
+						pos.set_posx( (pos.get_posx() + 1 % lims));
+						move= movetype.COMON;
+						pory= false;
+						route = 0;
+						step=0;
+						break;    
+					}
 			}
-			else{ // para arriba  
+			else if (pory  && route != 1){ // para arriba  
 				switch(step){
 				case 0:
 					pos.set_posy((pos.get_posy() - 1 )%lims);
@@ -345,64 +352,61 @@ public class auto extends Thread {
 					move = movetype.COMON;
 					pory= false;
 					step=0;
+					route = 0;
 					break;      
 				}
 			}
-		}
-		else // por x
+		else if ( !pory && route == 2) // por x para la derecha
 		{    
-			if(route == 2){ // para la derecha
 				switch(step){
-				case 0:
-					route = 1;
-					pos.set_posx( (pos.get_posx()+1 ) % lims);
-					step++;
-					break;
-				case 1:
-					pos.set_posx( (pos.get_posy()+ 1) % lims );
-					step++;
-					break;
-				case 2:
-					pos.set_posy( (pos.get_posy()-1) % lims );
-					step++;
-					break;
-				case 3:
-					pos.set_posy( (pos.get_posy()-1) %lims);
-					move = movetype.COMON;
-					step=0;
-					route = 0;
-					pory = true;  
-					route = 0;
-					break;
-				}
+					case 0:
+						pos.set_posx( (pos.get_posx()+1 ) % lims);
+						step++;
+						break;
+					case 1:
+						pos.set_posx( (pos.get_posx()+ 1) % lims );
+						step++;
+						break;
+					case 2:
+						pos.set_posy( (pos.get_posy()-1) % lims );
+						step++;
+						break;
+					case 3:
+						pos.set_posy( (pos.get_posy()-1) %lims);
+						move = movetype.COMON;
+						step=0;
+						route = 0;
+						pory = true;  
+						route = 0;
+						break;
+					}
 			}
-			else{ // para la izquierda
+		else{ // POR X para la izquierda
 				switch(step){
-				case 0:
-					pos.set_posx( (pos.get_posx()-1) );
-					
-					step++;
-					break;
-				case 1:
-					pos.set_posx( (pos.get_posx()- 1)  );
-					
-					step++;
-					break;
-				case 2:
-					pos.set_posy( (pos.get_posy()+1) );
-					
-					step++;
-					break;
-				case 3:
-					pos.set_posy( (pos.get_posy()+1));
-					
-					move = movetype.COMON;
-					pory = true;
-					step =0;
-					break;
+					case 0:
+						pos.set_posx( (pos.get_posx()-1) );
+						step++;
+						break;
+					case 1:
+						pos.set_posx( (pos.get_posx()- 1)  );
+						
+						step++;
+						break;
+					case 2:
+						pos.set_posy( (pos.get_posy()+1) );
+						
+						step++;
+						break;
+					case 3:
+						pos.set_posy( (pos.get_posy()+1));
+						
+						move = movetype.COMON;
+						pory = true;
+						step =0;
+						break;
+					}
 				}
-			}
-		}
+		
 	}
 
 	public void run()
