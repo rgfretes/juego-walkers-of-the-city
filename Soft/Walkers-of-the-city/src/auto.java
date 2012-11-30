@@ -11,7 +11,18 @@ public class auto extends Thread {
 	private int step;
 	private int route;
 	private int id;
+	private int numero_antiguedad;
 	
+	public int get_numero_antiguedad() {
+		return numero_antiguedad;
+	}
+
+
+	public void set_numero_antiguedad(int numero_antiguedad) {
+		this.numero_antiguedad = numero_antiguedad;
+	}
+
+
 	auto(mapa map, int posy, int posx, int retardo, boolean sobrey, int lims,int id)
 	{
 		this.map = map;

@@ -27,6 +27,9 @@ public class main {
 		autos[4] = new auto(map, 6, 2, 30, false, posiciones.length, 4);
 		
 		map.place(autos);
+		monitor mon=new monitor();
+		System.out.print ("10"+mon.getMatriz_incidencia()[1][0]+" 01"+mon.getMatriz_incidencia()[0][1]);
+		
 	}
 
 }
