@@ -27,6 +27,14 @@ public class monitor {
 		   {0,-1,-1,-1,-1,-1,0,0,0,0,0,-1,0,0,0,1,0,0,0,1,1,0,0,0},
 		   {0,0,-1,0,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1},
 		   {0,0,0,0,0,-1,0,-1,-1,-1,-1,-1,0,1,0,0,0,1,0,0,0,0,1,0}};
+	public int[][] getMatriz_incidencia() {
+		return matriz_incidencia;
+	}
+
+
+
+
+
 	private int numero_antiguedad;
 	private int[] estado;
 	private HashMap<String,Integer> relacion_transicion_recurso_retornado;
@@ -46,7 +54,13 @@ public class monitor {
 			{1,1,0,1}};
 	public monitor(){
 		acciones=new Cola[12];
-		relacion_transicion_secuencia.put("a",   0);
+		for(int i=0;i<12;i++)
+			acciones[i]=new Cola(i%3);
+		numero_antiguedad=0;
+		int []estado={0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1};
+		this.estado=estado;
+		relacion_transicion_secuencia= new HashMap<String, Integer>();
+		relacion_transicion_recurso_retornado= new HashMap<String, Integer>();
 		relacion_transicion_secuencia.put("ab",  1);
 		relacion_transicion_secuencia.put("abc", 2);
 		relacion_transicion_secuencia.put("b",   3);
@@ -92,8 +106,8 @@ public class monitor {
 	public void return_recurso(auto auto_llamador, String secuencia_recurso){
 		lock.lock();
 		int tran=relacion_transicion_recurso_retornado.get(secuencia_recurso);
-		for(int i=0;i<12;i++){
-			estado[i]=estado[i]+matriz_incidencia[tran][i];
+		for(int i=0;i<16;i++){
+			estado[i]=estado[i]+matriz_incidencia[i][tran];
 		}
 		int[] disps=get_recursos_disponibles();
 		int inanib=buscar_inanibido();
@@ -173,7 +187,7 @@ public class monitor {
 				if(acciones[i].get_primer().get_numero_antiguedad() < (numero_antiguedad-10)){
 					if(a==15)a=i;
 					else
-						if(acciones[i].get_primer().get_numero_antiguedad() < acciones[a].get_primer().get_retardo())
+						if(acciones[i].get_primer().get_numero_antiguedad() < acciones[a].get_primer().get_numero_antiguedad())
 							a=i;
 				
 			
@@ -217,9 +231,11 @@ public class monitor {
 						aux=0;
 			}
 			if(aux==1){
-				//if(posibles==null)posibles=new int[12];
+				if(!acciones[i].esVacia()){
+				if(posibles==null)posibles=new int[12];
 				posibles[xua]=i;
 				xua++;
+				}
 			}
 			
 			
@@ -247,7 +263,7 @@ public class monitor {
 	 * @param auto_llamador
 	 */
 	private void sacar_numero(auto auto_llamador){
-		auto_llamador.numero_antiguedad=this.numero_antiguedad;
+		auto_llamador.set_numero_antiguedad(this.numero_antiguedad);
 		this.numero_antiguedad++;
 		}
 
@@ -283,8 +299,8 @@ public class monitor {
 	 * @param recursos
 	 */
 	private void tomar_recursos(int tran){
-		for(int i=0;i<12;i++){
-			estado[i]=estado[i]+matriz_incidencia[tran][i];
+		for(int i=0;i<16;i++){
+			estado[i]=estado[i]+matriz_incidencia[i][tran];
 		}
 		lock.unlock();
 
