@@ -37,6 +37,14 @@ public class monitor {
 
 	private int numero_antiguedad;
 	private int[] estado;
+	public int[] getEstado() {
+		return estado;
+	}
+
+
+
+
+
 	private HashMap<String,Integer> relacion_transicion_recurso_retornado;
 	private HashMap<String,Integer> relacion_transicion_secuencia;
 	private int[][] relacion_recurso_secuencia=
@@ -53,6 +61,7 @@ public class monitor {
 			{1,0,0,1},
 			{1,1,0,1}};
 	public monitor(){
+		lock=new ReentrantLock();
 		acciones=new Cola[12];
 		for(int i=0;i<12;i++)
 			acciones[i]=new Cola(i%3);
