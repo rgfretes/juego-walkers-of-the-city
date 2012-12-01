@@ -9,10 +9,11 @@ public class auto extends Thread {
 	private movetype move;
 	private int lims;
 	private int step;
-	private int route;
+	private int esquina;
 	private int id;
 	private int numero_antiguedad;
-	
+	private monitor corner;
+
 	public int get_numero_antiguedad() {
 		return numero_antiguedad;
 	}
@@ -23,7 +24,7 @@ public class auto extends Thread {
 	}
 
 
-	auto(mapa map, int posy, int posx, int retardo, boolean sobrey, int lims,int id)
+	auto(mapa map, int posy, int posx, int retardo, boolean sobrey, int lims,int id, monitor corner)
 	{
 		this.map = map;
 		this.pos = new coords(posx, posy);
@@ -34,7 +35,7 @@ public class auto extends Thread {
 		this.step=0;
 		this.pory = sobrey;
 		this.id = id;
-		this.route = 0;
+		this.corner = corner;
 	}
 
 
@@ -53,56 +54,77 @@ public class auto extends Thread {
 		return pos;
 	}
 
-	private boolean esEsquina()
+	private int esEsquina()
 	{
-		if( (pos.get_posx()==5 && pos.get_posy()==4) || (pos.get_posx()==7 && pos.get_posy()==5)
-				|| (pos.get_posx()==6 && pos.get_posy()==7) || (pos.get_posx()==4 && pos.get_posy()==6) ) {
-			return true;
+		if( (pos.get_posx()==5 && pos.get_posy()==4) ){
+			esquina = 2;
+			return 2;
+		} 
+		else if( (pos.get_posx()==7 && pos.get_posy()==5)){
+			esquina = 1;
+			return 1;
 		}
-		else {
-			return false;}
+		else if((pos.get_posx()==6 && pos.get_posy()==7) ){
+			esquina = 4 ;
+			return 4; 
+		}
+		else if( (pos.get_posx()==4 && pos.get_posy()==6) ){ 
+			esquina = 3 ;
+			return 3;
+		}
+		else{ 
+			esquina = 0;
+			return 0;
+		}
 
 	}
+
 	public void moveforward()
 	{
 		int ant;
-		
+
 		// verifico si estoy por entrar a una esquina:
-			if( esEsquina() ){
-				
-				movesomehow();}
-			else if(pory)
-			{
-				if(pos.get_posx() % 2 != 0) //va para abajo
-				{
-					ant = pos.get_posy();
-					pos.set_posy((pos.get_posy()+1)%lims);
-				}
-				else
-				{
-					ant = pos.get_posy();
-					pos.set_posy((pos.get_posy()-1));
-					if(pos.get_posy()<0)
-						pos.set_posy(lims-1);
-				}
-				map.refresh(ant, pos.get_posx(), pos.get_posy(), pos.get_posx(), this);
+		if( esEsquina() != 0 ){
+			try {
+				movesomehow();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			else // es por x
+		}
+
+		else if(pory)
+		{
+			if(pos.get_posx() % 2 != 0) //va para abajo
 			{
-				if(pos.get_posy() % 2 == 0) //va para la derecha
-				{
-					ant = pos.get_posx();
-					pos.set_posx((pos.get_posx()+1)%lims);
-				}
-				else
-				{
-					ant = pos.get_posx();
-					pos.set_posx((pos.get_posx()-1));
-					if(pos.get_posx()<0){
-						pos.set_posx(lims-1);}
-				}
-				map.refresh(pos.get_posy(), ant, pos.get_posy(), pos.get_posx(), this);
+				ant = pos.get_posy();
+				pos.set_posy((pos.get_posy()+1)%lims);
 			}
+			else
+			{
+				ant = pos.get_posy();
+				pos.set_posy((pos.get_posy()-1));
+				if(pos.get_posy()<0)
+					pos.set_posy(lims-1);
+			}
+			map.refresh(ant, pos.get_posx(), pos.get_posy(), pos.get_posx(), this);
+		}
+		else // es por x
+		{
+			if(pos.get_posy() % 2 == 0) //va para la derecha
+			{
+				ant = pos.get_posx();
+				pos.set_posx((pos.get_posx()+1)%lims);
+			}
+			else
+			{
+				ant = pos.get_posx();
+				pos.set_posx((pos.get_posx()-1));
+				if(pos.get_posx()<0){
+					pos.set_posx(lims-1);}
+			}
+			map.refresh(pos.get_posy(), ant, pos.get_posy(), pos.get_posx(), this);
+		}
 
 	}
 
@@ -112,13 +134,17 @@ public class auto extends Thread {
 		if(this.move == movetype.COMON){
 			moveforward();}
 		else{
-			movesomehow();}
+			try {
+				movesomehow();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}}
 	}
 
 
-	public void movesomehow()
+	public void movesomehow() throws InterruptedException
 	{   
-		//monitor mont;
 		int antx, anty;
 		antx = pos.get_posx();
 		anty = pos.get_posy();
@@ -127,297 +153,478 @@ public class auto extends Thread {
 		if(this.move == movetype.COMON)
 		{
 			step = 0;
-			route  = 0;
-			
+
 			// DEFINICION TIPO DE MOVIMIENTO
 			Random r1 = new Random();
 			int movet;
 			movet = r1.nextInt(3);
-			
-			
-			 //forzar movimiento
-			//movet = 2;
-			
+
+
+			//forzar movimiento
+			//movet = 1;
+
 			//ESTABLECIMIENTO DEL MOVETYPE
 			if(movet == 0){
 				this.move = movetype.DERECHA;}
 			else if(movet == 1){
 				this.move = movetype.DERECHO;}
 			else{
-				this.move = movetype.IZQUIERDA;
-				//  indicacion de tipo de ruta:
-				if(pos.get_posx() % 2 != 0 && pory == true)
-					route = 1;
-				else if(pos.get_posy() % 2 == 0 && pory == false)
-					route= 2;
-				}
-			
-			
-			
+				this.move = movetype.IZQUIERDA;}
+
 			// obtencion de monitor indicado
 			//mont = map.get_cruce(pos);
 
-			//segun el movimiento es el pedido de recursos
-			switch(this.move)
-			{
-			case DERECHA:
-				// pedir recursos
-
-				break;
-			case  DERECHO:
-				//pedir
-				break;
-			case IZQUIERDA:
-				//pedir
-				break;
-			}
+			solicitar_recursos();
+			
 		}
 		// realizo el movimiento
 		switch(this.move){
 		case DERECHA:
 			mov_derecha();
-			//devolver recurso desocupado (anterior)
+			devolver_recurso();
 			break;
 		case DERECHO:
 			mov_derecho();
-			//devolver recurso desocupado
+			devolver_recurso();
 			break;
 		case IZQUIERDA:
 			mov_izquierda();
-			//devolver recurso desocupado 
+			devolver_recurso(); 
 			break;    
 		}
-		
+
 		map.refresh(anty,antx,pos.get_posy(),pos.get_posx(),this);
+	}
+
+	private void solicitar_recursos() throws InterruptedException
+	{
+		//segun el movimiento es el pedido de recursos
+		switch(this.move)
+		{
+		case DERECHA:
+			switch(esquina){
+			case 1:
+				corner.reservar_recursos(this, "a");
+				break;
+			case 2:
+				corner.reservar_recursos(this, "b");
+				break;
+			case 3:
+				corner.reservar_recursos(this, "c");
+				break;
+			case 4:
+				corner.reservar_recursos(this, "d");
+				break;
+			}
+			break;
+		case  DERECHO:
+			switch(esquina){
+			case 1:
+				corner.reservar_recursos(this, "ab");
+				break;
+			case 2:
+				corner.reservar_recursos(this, "bc");
+				break;
+			case 3:
+				corner.reservar_recursos(this, "cd");
+				break;
+			case 4:
+				corner.reservar_recursos(this, "da");
+				break;
+			}
+			break;
+		case IZQUIERDA:
+			switch(esquina){
+			case 1:
+				corner.reservar_recursos(this, "abc");
+				break;
+			case 2:
+				corner.reservar_recursos(this, "bcd");
+				break;
+			case 3:
+				corner.reservar_recursos(this, "cda");
+				break;
+			case 4:
+				corner.reservar_recursos(this, "dab");
+				break;
+			}
+			break;
+		}
+	}
+	
+	private void devolver_recurso()
+	{
+		switch(this.move){
+		case DERECHA:
+			if(step == 1){ 
+
+				switch(esquina){
+				case 1:
+					corner.return_recurso(this, "a");
+					break;
+				case 2:
+					corner.return_recurso(this, "b");
+					break;
+				case 3:
+					corner.return_recurso(this, "c");
+					break;
+				case 4:
+					corner.return_recurso(this, "d");
+					break;
+				}
+			}
+			break;
+		case DERECHO:
+
+			switch(step)
+			{
+			case 1: // step 1
+
+				switch(esquina){
+				case 1:
+					corner.return_recurso(this, "ab");
+					break;
+				case 2:
+					corner.return_recurso(this, "bc");
+					break;
+				case 3:
+					corner.return_recurso(this, "cd");
+					break;
+				case 4:
+					corner.return_recurso(this, "da");
+					break;
+				}
+
+				break;
+			case 2: // step 2
+
+				switch(esquina){
+				case 1:
+					corner.return_recurso(this, "b");
+					break;
+				case 2:
+					corner.return_recurso(this, "c");
+					break;
+				case 3:
+					corner.return_recurso(this, "d");
+					break;
+				case 4:
+					corner.return_recurso(this, "a");
+					break;
+				}
+				break; 
+			}
+
+			break;
+		case IZQUIERDA:
+
+			switch(step)
+			{
+			case 1: // step 1
+				switch(esquina){
+				case 1:
+					corner.return_recurso(this, "abc");
+					break;
+				case 2:
+					corner.return_recurso(this, "bcd");
+					break;
+				case 3:
+					corner.return_recurso(this, "cda");
+					break;
+				case 4:
+					corner.return_recurso(this, "dab");
+					break;
+				}
+				break;
+			case 2: // step 2
+
+				switch(esquina){
+				case 1:
+					corner.return_recurso(this, "bc");
+					break;
+				case 2:
+					corner.return_recurso(this, "cd");
+					break;
+				case 3:
+					corner.return_recurso(this, "da");
+					break;
+				case 4:
+					corner.return_recurso(this, "ab");
+					break;
+				}
+			case 3: // step 3
+
+				switch(esquina){
+				case 1:
+					corner.return_recurso(this, "c");
+					break;
+				case 2:
+					corner.return_recurso(this, "d");
+					break;
+				case 3:
+					corner.return_recurso(this, "a");
+					break;
+				case 4:
+					corner.return_recurso(this, "b");
+					break;
+				}
+
+
+				break; 
+			}
+
+
+			break;    
+		}
+
+
 	}
 
 	private void mov_derecha()
 	{
-		
-		if(pory ) { // por y
-			if(pos.get_posx() % 2 != 0){ // para abajo
-				switch(step){
-				case 0:
-					pos.set_posy((pos.get_posy()+1) %lims);
-					step++;
-					break;
-				case 1:
-					pos.set_posx((pos.get_posx() - 1) % lims); 
-					pory = false;
-					this.move = movetype.COMON; 
-					step=0;
-					break;
-				}
-			}
-			else{ // para arriba  
-				switch(step){
-				case 0:
-					pos.set_posy((pos.get_posy() -1 )%lims);
-					step++;
-					break;
-				case 1:
-					pos.set_posx((pos.get_posx() + 1) % lims); 
-					pory = false;
-					this.move = movetype.COMON;
-					step=0;
-					break;
-				}
+		//por y
+		if(esquina == 2){ // para abajo
+			switch(step){
+			case 0:
+				pos.set_posy((pos.get_posy()+1) %lims);
+				step++;
+				break;
+			case 1:
+				pos.set_posx((pos.get_posx() - 1) % lims); 
+				pory = false;
+				this.move = movetype.COMON; 
+				step=0;
+				break;
 			}
 		}
-		else // por x
-		{    
-			if(pos.get_posy() % 2 == 0){ // para la derecha
-				switch(step){
-				case 0:
-					pos.set_posx( (pos.get_posx() +1 ) % lims);
-					step++;
-					break;
-				case 1:
-					pos.set_posy( (pos.get_posy() + 1) % lims );
-					pory = true;
-					this.move = movetype.COMON;
-					step=0;
-					break;
-				}
-			}
-			else{ // para la izquierda
-				switch(step){
-				case 0:
-					pos.set_posx( (pos.get_posx() - 1 ) % lims);
-					step++;
-					break;
-				case 1:
-					pos.set_posy( (pos.get_posy() - 1) % lims );
-					pory = true;
-					this.move = movetype.COMON;
-					step=0;
-					break;
-				}
+		else if(esquina == 4){   // para arriba
+			switch(step){
+			case 0:
+				pos.set_posy((pos.get_posy() -1 )%lims);
+				step++;
+				break;
+			case 1:
+				pos.set_posx((pos.get_posx() + 1) % lims); 
+				pory = false;
+				this.move = movetype.COMON;
+				step=0;
+				break;
 			}
 		}
+
+		//por x
+		else if( esquina == 3)
+		{    // para la derecha
+			switch(step){
+			case 0:
+				pos.set_posx( (pos.get_posx() +1 ) % lims);
+				step++;
+				break;
+			case 1:
+				pos.set_posy( (pos.get_posy() + 1) % lims );
+				pory = true;
+				this.move = movetype.COMON;
+				step=0;
+				break;
+			}
+		}
+		else if(esquina == 1)
+		{ // para la izquierda
+			switch(step){
+			case 0:
+				pos.set_posx( (pos.get_posx() - 1 ) % lims);
+				step++;
+				break;
+			case 1:
+				pos.set_posy( (pos.get_posy() - 1) % lims );
+				pory = true;
+				this.move = movetype.COMON;
+				step=0;
+				break;
+			}
+		}
+		else 
+			moveforward();
+
 	}
+
 	private void mov_derecho()
 	{
-		if(pory ) { // por y
-			if(pos.get_posx() % 2 != 0){ // para abajo
-				switch(step){
-				case 0:
-					pos.set_posy((pos.get_posy()+1) %lims);
-					step++;
-					break;
-				case 1:
-					pos.set_posy((pos.get_posy()+1) %lims); 
-					this.move = movetype.COMON;
-					step=0;
-					break;
-				}
-			}
-			else{ // para arriba  
-				switch(step){
-				case 0:
-					pos.set_posy((pos.get_posy() -1 )%lims);
-					step++;
-					break;
-				case 1:
-					pos.set_posy((pos.get_posy() - 1) % lims); 
-					this.move = movetype.COMON;
-					step=0;
-					break;
-				}
+
+		if(esquina == 2){ // por "y" para abajo
+			switch(step){
+			case 0:
+				pos.set_posy((pos.get_posy()+1) %lims);
+				step++;
+				break;
+			case 1:
+				pos.set_posy((pos.get_posy()+1) %lims); 
+				step++;
+				break;
+			case 2:
+				pos.set_posy((pos.get_posy()+1) %lims);
+				this.move = movetype.COMON;
+				step=0;
+				break;
 			}
 		}
-		else // por x
-		{    
-			if(pos.get_posy() % 2 == 0){ // para la derecha
-				switch(step){
-				case 0:
-					pos.set_posx( (pos.get_posx() +1 ) % lims);
-					step++;
-					break;
-				case 1:
-					pos.set_posx( (pos.get_posx() + 1) % lims );
-					this.move = movetype.COMON;
-					step=0;
-					break;
-				}
+		else if(esquina == 4){  // para arriba  
+			switch(step){
+			case 0:
+				pos.set_posy((pos.get_posy() -1 )%lims);
+				step++;
+				break;
+			case 1:
+				pos.set_posy((pos.get_posy() - 1) % lims); 
+				step++;
+				break;
+			case 2:
+				pos.set_posy((pos.get_posy() - 1) % lims); 
+				this.move = movetype.COMON;
+				step=0;
+				break;
 			}
-			else{ // para la izquierda
-				switch(step){
-				case 0:
-					pos.set_posx( (pos.get_posx() - 1 ) % lims);
-					step++;
-					break;
-				case 1:
-					pos.set_posx( (pos.get_posx () - 1) % lims );
-					this.move = movetype.COMON;
-					step=0;
-					break;
-				}
-			}      
 		}
+
+		//por x
+		else if( esquina == 3)
+		{    // para la derecha
+			switch(step){
+			case 0:
+				pos.set_posx( (pos.get_posx() +1 ) % lims);
+				step++;
+				break;
+			case 1:
+				pos.set_posx( (pos.get_posx() + 1) % lims );
+				this.move = movetype.COMON;
+				step++;
+				break;
+			case 2:
+				pos.set_posx( (pos.get_posx() + 1) % lims );
+				this.move = movetype.COMON;
+				step=0;
+				break;
+			}
+		}
+		else if(esquina == 1)
+		{ // para la izquierda
+			switch(step){
+			case 0:
+				pos.set_posx( (pos.get_posx() - 1 ) % lims);
+				step++;
+				break;
+			case 1:
+				pos.set_posx( (pos.get_posx() - 1 ) % lims);
+				step++;
+				break;
+			case 2:
+				pos.set_posx( (pos.get_posx () - 1) % lims );
+				this.move = movetype.COMON;
+				step=0;
+				break;
+			}
+		}      
+
 	}
 
 	private void mov_izquierda()
 	{
-		
-		
-		if(pory && route == 1){ // para abajo
-				switch(step){
-					case 0:
-						pos.set_posy((pos.get_posy()+1) %lims);
-						step++;
-						break;
-					case 1:
-						pos.set_posy((pos.get_posy()+1) %lims); 
-						step++;
-						break;
-					case 2:
-						pos.set_posx( (pos.get_posx() + 1 ) % lims);
-						step++;
-						break;
-					case 3:
-						pos.set_posx( (pos.get_posx() + 1 % lims));
-						move= movetype.COMON;
-						pory= false;
-						route = 0;
-						step=0;
-						break;    
-					}
+
+
+		if(esquina == 2){ // por "y" para abajo
+			switch(step){
+			case 0:
+				pos.set_posy((pos.get_posy()+1) %lims);
+				step++;
+				break;
+			case 1:
+				pos.set_posy((pos.get_posy()+1) %lims); 
+				step++;
+				break;
+			case 2:
+				pos.set_posx( (pos.get_posx() + 1 ) % lims);
+				step++;
+				break;
+			case 3:
+				pos.set_posx( (pos.get_posx() + 1 % lims));
+				move= movetype.COMON;
+				pory= false;
+				step=0;
+				break;    
 			}
-			else if (pory  && route != 1){ // para arriba  
-				switch(step){
-				case 0:
-					pos.set_posy((pos.get_posy() - 1 )%lims);
-					step++;
-					break;
-				case 1:
-					pos.set_posy((pos.get_posy() - 1 )%lims);
-					step++;
-					break;
-				case 2:
-					pos.set_posx((pos.get_posx() - 1 )%lims );
-					step++;
-					break;
-				case 3:
-					pos.set_posx((pos.get_posx() - 1 )%lims);
-					move = movetype.COMON;
-					pory= false;
-					step=0;
-					route = 0;
-					break;      
-				}
+		}
+		else if(esquina == 4){  // para arriba  
+			switch(step){
+			case 0:
+				pos.set_posy((pos.get_posy() - 1 )%lims);
+				step++;
+				break;
+			case 1:
+				pos.set_posy((pos.get_posy() - 1 )%lims);
+				step++;
+				break;
+			case 2:
+				pos.set_posx((pos.get_posx() - 1 )%lims );
+				step++;
+				break;
+			case 3:
+				pos.set_posx((pos.get_posx() - 1 )%lims);
+				move = movetype.COMON;
+				pory= false;
+				step=0;
+				break;      
 			}
-		else if ( !pory && route == 2) // por x para la derecha
+		}
+		else if( esquina == 3) //x para la derecha
 		{    
-				switch(step){
-					case 0:
-						pos.set_posx( (pos.get_posx()+1 ) % lims);
-						step++;
-						break;
-					case 1:
-						pos.set_posx( (pos.get_posx()+ 1) % lims );
-						step++;
-						break;
-					case 2:
-						pos.set_posy( (pos.get_posy()-1) % lims );
-						step++;
-						break;
-					case 3:
-						pos.set_posy( (pos.get_posy()-1) %lims);
-						move = movetype.COMON;
-						step=0;
-						route = 0;
-						pory = true;  
-						route = 0;
-						break;
-					}
+			switch(step){
+			case 0:
+				pos.set_posx( (pos.get_posx()+1 ) % lims);
+				step++;
+				break;
+			case 1:
+				pos.set_posx( (pos.get_posx()+ 1) % lims );
+				step++;
+				break;
+			case 2:
+				pos.set_posy( (pos.get_posy()-1) % lims );
+				step++;
+				break;
+			case 3:
+				pos.set_posy( (pos.get_posy()-1) %lims);
+				move = movetype.COMON;
+				step=0;
+				pory = true;  
+				break;
 			}
-		else{ // POR X para la izquierda
-				switch(step){
-					case 0:
-						pos.set_posx( (pos.get_posx()-1) );
-						step++;
-						break;
-					case 1:
-						pos.set_posx( (pos.get_posx()- 1)  );
-						
-						step++;
-						break;
-					case 2:
-						pos.set_posy( (pos.get_posy()+1) );
-						
-						step++;
-						break;
-					case 3:
-						pos.set_posy( (pos.get_posy()+1));
-						
-						move = movetype.COMON;
-						pory = true;
-						step =0;
-						break;
-					}
-				}
-		
+		}
+		else if(esquina == 1)
+		{ // para la izquierda
+			switch(step){
+			case 0:
+				pos.set_posx( (pos.get_posx()-1) );
+				step++;
+				break;
+			case 1:
+				pos.set_posx( (pos.get_posx()- 1)  );
+
+				step++;
+				break;
+			case 2:
+				pos.set_posy( (pos.get_posy()+1) );
+
+				step++;
+				break;
+			case 3:
+				pos.set_posy( (pos.get_posy()+1));
+
+				move = movetype.COMON;
+				pory = true;
+				step =0;
+				break;
+			}
+		}
+
 	}
 
 	public void run()

@@ -20,12 +20,13 @@ public class main {
 		
 		mapa map = new mapa(posiciones);
 		auto[] autos = new auto[5];
+		monitor monit = new monitor();
 		
-		autos[0] = new auto(map, 6, 2, 70, false, posiciones.length, 0);
-		autos[1] = new auto(map, 2, 6, 70, true, posiciones.length, 1);
-		autos[2] = new auto(map, 5, 11, 40, false, posiciones.length, 2);
-		autos[3] = new auto(map, 2, 5, 40, true, posiciones.length, 3);
-		autos[4] = new auto(map, 6, 2, 30, false, posiciones.length, 4);
+		autos[0] = new auto(map, 6, 2, 200, false, posiciones.length, 0,monit);
+		autos[1] = new auto(map, 2, 6, 200, true, posiciones.length, 1,monit);
+		autos[2] = new auto(map, 5, 11, 200, false, posiciones.length, 2,monit);
+		autos[3] = new auto(map, 2, 5, 200, true, posiciones.length, 3,monit);
+		autos[4] = new auto(map, 6, 2, 200, false, posiciones.length, 4,monit);
 		
 		map.place(autos);
 		monitor mon=new monitor();
