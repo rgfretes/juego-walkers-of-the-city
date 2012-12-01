@@ -80,7 +80,7 @@ public class monitor {
 		relacion_transicion_secuencia.put("cda", 8);
 		relacion_transicion_secuencia.put("d",   9);
 		relacion_transicion_secuencia.put("da", 10);
-		relacion_transicion_secuencia.put("dab",11);
+		relacion_transicion_secuencia.put("dab",11); // no falta a ?? 
 		relacion_transicion_recurso_retornado.put("abc", 12);
 		relacion_transicion_recurso_retornado.put("dab", 13);
 		relacion_transicion_recurso_retornado.put("ab",  14);
@@ -165,6 +165,7 @@ public class monitor {
 			tomar_recursos(tran);
 		else{
 			acciones[tran].adicionar(auto_llamador);
+			//lock.unlock();
 			wait();
 			tomar_recursos(tran);
 			}

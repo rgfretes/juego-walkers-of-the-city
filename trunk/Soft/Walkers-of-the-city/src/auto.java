@@ -161,8 +161,11 @@ public class auto extends Thread {
 
 
 			//forzar movimiento
-			//movet = 1;
-
+			//movet = 2;
+			if(movet == 0)
+				movet=1;
+				
+				
 			//ESTABLECIMIENTO DEL MOVETYPE
 			if(movet == 0){
 				this.move = movetype.DERECHA;}
@@ -182,14 +185,27 @@ public class auto extends Thread {
 		case DERECHA:
 			mov_derecha();
 			devolver_recurso();
+			if(step==2){
+				step=0;
+				move = movetype.COMON;
+			}
 			break;
 		case DERECHO:
 			mov_derecho();
+			System.out.println("\n en movesomhow() step="+step);
 			devolver_recurso();
+			if(step==3){
+				step=0;
+				move = movetype.COMON;
+			}
 			break;
 		case IZQUIERDA:
 			mov_izquierda();
-			devolver_recurso(); 
+			devolver_recurso();
+			if(step==4){
+				step=0;
+				move = movetype.COMON;
+			}
 			break;    
 		}
 
@@ -256,7 +272,7 @@ public class auto extends Thread {
 	{
 		switch(this.move){
 		case DERECHA:
-			if(step == 1){ 
+			if(step == 2){ 
 
 				switch(esquina){
 				case 1:
@@ -278,37 +294,44 @@ public class auto extends Thread {
 
 			switch(step)
 			{
-			case 1: // step 1
+			case 2: // step 1
 
 				switch(esquina){
 				case 1:
+					System.out.println("devuelvo a");
 					corner.return_recurso(this, "ab");
 					break;
 				case 2:
+					System.out.println("devuelvo b");
 					corner.return_recurso(this, "bc");
 					break;
 				case 3:
 					corner.return_recurso(this, "cd");
 					break;
 				case 4:
+					System.out.println("devuelvo d");
 					corner.return_recurso(this, "da");
 					break;
 				}
 
 				break;
-			case 2: // step 2
+			case 3: // step 2
 
 				switch(esquina){
 				case 1:
+					System.out.println("devuelvo b");
 					corner.return_recurso(this, "b");
 					break;
 				case 2:
+					System.out.println("devuelvo c");
 					corner.return_recurso(this, "c");
 					break;
 				case 3:
+					System.out.println("devuelvo d");
 					corner.return_recurso(this, "d");
 					break;
 				case 4:
+					System.out.println("devuelvo a");
 					corner.return_recurso(this, "a");
 					break;
 				}
@@ -320,7 +343,7 @@ public class auto extends Thread {
 
 			switch(step)
 			{
-			case 1: // step 1
+			case 2: // step 1
 				switch(esquina){
 				case 1:
 					corner.return_recurso(this, "abc");
@@ -336,7 +359,7 @@ public class auto extends Thread {
 					break;
 				}
 				break;
-			case 2: // step 2
+			case 3: // step 2
 
 				switch(esquina){
 				case 1:
@@ -352,7 +375,7 @@ public class auto extends Thread {
 					corner.return_recurso(this, "ab");
 					break;
 				}
-			case 3: // step 3
+			case 4: // step 3
 
 				switch(esquina){
 				case 1:
@@ -391,9 +414,8 @@ public class auto extends Thread {
 				break;
 			case 1:
 				pos.set_posx((pos.get_posx() - 1) % lims); 
-				pory = false;
-				this.move = movetype.COMON; 
-				step=0;
+				pory = false; 
+				step++;
 				break;
 			}
 		}
@@ -406,8 +428,7 @@ public class auto extends Thread {
 			case 1:
 				pos.set_posx((pos.get_posx() + 1) % lims); 
 				pory = false;
-				this.move = movetype.COMON;
-				step=0;
+				step++;
 				break;
 			}
 		}
@@ -423,8 +444,7 @@ public class auto extends Thread {
 			case 1:
 				pos.set_posy( (pos.get_posy() + 1) % lims );
 				pory = true;
-				this.move = movetype.COMON;
-				step=0;
+				step++;
 				break;
 			}
 		}
@@ -438,8 +458,7 @@ public class auto extends Thread {
 			case 1:
 				pos.set_posy( (pos.get_posy() - 1) % lims );
 				pory = true;
-				this.move = movetype.COMON;
-				step=0;
+				step++;
 				break;
 			}
 		}
@@ -463,8 +482,7 @@ public class auto extends Thread {
 				break;
 			case 2:
 				pos.set_posy((pos.get_posy()+1) %lims);
-				this.move = movetype.COMON;
-				step=0;
+				step++;
 				break;
 			}
 		}
@@ -480,8 +498,8 @@ public class auto extends Thread {
 				break;
 			case 2:
 				pos.set_posy((pos.get_posy() - 1) % lims); 
-				this.move = movetype.COMON;
-				step=0;
+				step++;
+				
 				break;
 			}
 		}
@@ -496,13 +514,11 @@ public class auto extends Thread {
 				break;
 			case 1:
 				pos.set_posx( (pos.get_posx() + 1) % lims );
-				this.move = movetype.COMON;
 				step++;
 				break;
 			case 2:
 				pos.set_posx( (pos.get_posx() + 1) % lims );
-				this.move = movetype.COMON;
-				step=0;
+				step++;
 				break;
 			}
 		}
@@ -519,8 +535,7 @@ public class auto extends Thread {
 				break;
 			case 2:
 				pos.set_posx( (pos.get_posx () - 1) % lims );
-				this.move = movetype.COMON;
-				step=0;
+				step++;
 				break;
 			}
 		}      
@@ -547,9 +562,8 @@ public class auto extends Thread {
 				break;
 			case 3:
 				pos.set_posx( (pos.get_posx() + 1 % lims));
-				move= movetype.COMON;
 				pory= false;
-				step=0;
+				step++;
 				break;    
 			}
 		}
@@ -569,9 +583,8 @@ public class auto extends Thread {
 				break;
 			case 3:
 				pos.set_posx((pos.get_posx() - 1 )%lims);
-				move = movetype.COMON;
 				pory= false;
-				step=0;
+				step++;
 				break;      
 			}
 		}
@@ -592,8 +605,7 @@ public class auto extends Thread {
 				break;
 			case 3:
 				pos.set_posy( (pos.get_posy()-1) %lims);
-				move = movetype.COMON;
-				step=0;
+				step++;
 				pory = true;  
 				break;
 			}
@@ -617,10 +629,8 @@ public class auto extends Thread {
 				break;
 			case 3:
 				pos.set_posy( (pos.get_posy()+1));
-
-				move = movetype.COMON;
 				pory = true;
-				step =0;
+				step++;
 				break;
 			}
 		}
