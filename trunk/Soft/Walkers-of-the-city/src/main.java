@@ -2,8 +2,9 @@ public class main {
 
 	/**
 	 * @param args
+	 * @throws InterruptedException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		int[][] posiciones = {{-1, -1, -1, -1, -1,  0,  0, -1, -1, -1, -1, -1},
 				              {-1, -1, -1, -1, -1,  0,  0, -1, -1, -1, -1, -1},
 				              {-1, -1, -1, -1, -1,  0,  0, -1, -1, -1, -1, -1},
@@ -28,7 +29,12 @@ public class main {
 		
 		map.place(autos);
 		monitor mon=new monitor();
-		System.out.print ("10"+mon.getMatriz_incidencia()[1][0]+" 01"+mon.getMatriz_incidencia()[0][1]);
+		System.out.println("tome"+mon.getEstado()[12]);
+		mon.reservar_recursos(autos[0], "abc");
+		 System.out.println("tome"+mon.getEstado()[12]);
+		mon.return_recurso(autos[0], "abc");
+		System.out.println("devolvi"+mon.getEstado()[12]);
+		
 		
 	}
 
