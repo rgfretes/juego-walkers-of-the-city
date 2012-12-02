@@ -161,10 +161,10 @@ public class auto extends Thread {
 
 
 			//forzar movimiento
-			//movet = 2;
-			if(movet == 0)
+			movet = 2;
+			/*if(movet == 0)
 				movet=1;
-				
+				*/
 				
 			//ESTABLECIMIENTO DEL MOVETYPE
 			if(movet == 0){
@@ -380,10 +380,11 @@ public class auto extends Thread {
 					corner.return_recurso(this, "ab");
 					break;
 				}
+				break;
 			case 4: // step 3
 
 				switch(esquina){
-				case 1:System.out.println("devuelvo c aca");
+				case 1:System.out.println("devuelvo c aca --");
 					corner.return_recurso(this, "c");
 					break;
 				case 2:System.out.println("devuelvo d aca");
