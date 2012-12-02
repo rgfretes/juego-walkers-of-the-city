@@ -192,7 +192,7 @@ public class auto extends Thread {
 			break;
 		case DERECHO:
 			mov_derecho();
-			System.out.println("\n en movesomhow() step="+step);
+			//System.out.println("\n en movesomhow() step="+step);
 			devolver_recurso();
 			if(step==3){
 				step=0;
@@ -298,18 +298,18 @@ public class auto extends Thread {
 
 				switch(esquina){
 				case 1:
-					System.out.println("devuelvo a");
+					//System.out.println("devuelvo a");
 					corner.return_recurso(this, "ab");
 					break;
 				case 2:
-					System.out.println("devuelvo b");
+					//System.out.println("devuelvo b");
 					corner.return_recurso(this, "bc");
 					break;
 				case 3:
 					corner.return_recurso(this, "cd");
 					break;
 				case 4:
-					System.out.println("devuelvo d");
+					//System.out.println("devuelvo d");
 					corner.return_recurso(this, "da");
 					break;
 				}
@@ -319,19 +319,19 @@ public class auto extends Thread {
 
 				switch(esquina){
 				case 1:
-					System.out.println("devuelvo b");
+					//System.out.println("devuelvo b");
 					corner.return_recurso(this, "b");
 					break;
 				case 2:
-					System.out.println("devuelvo c");
+					//System.out.println("devuelvo c");
 					corner.return_recurso(this, "c");
 					break;
 				case 3:
-					System.out.println("devuelvo d");
+					//System.out.println("devuelvo d");
 					corner.return_recurso(this, "d");
 					break;
 				case 4:
-					System.out.println("devuelvo a");
+					//System.out.println("devuelvo a");
 					corner.return_recurso(this, "a");
 					break;
 				}
