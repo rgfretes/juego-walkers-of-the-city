@@ -28,12 +28,18 @@ public class Cola {
         return tamanio() == MAXIMO - 1;
     }
 
-    public void adicionar(auto a) {
+    public synchronized void adicionar(auto a) {
         if (esLlena()) {
             System.out.println("Cola Llena! No se pudo adicionar.");
         } else {
             fin = (fin + 1) % MAXIMO;
             V[fin] = a;
+            try {
+				wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
     }
     public auto get_primer(){
@@ -49,15 +55,16 @@ public class Cola {
     	
     }
 
-    public auto eliminar() {
-        auto a = null;
+    public synchronized void eliminar() {
+        
         if (esVacia()) {
             System.out.println("Cola Vacia! No se pudo eliminar.");
         } else {
             inicio = (inicio + 1) % MAXIMO;
-            a = V[inicio];
+            
+            notify();
         }
-        return a;
+        
     }
 
     public int tamanio() {
