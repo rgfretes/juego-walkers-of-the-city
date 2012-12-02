@@ -161,7 +161,7 @@ public class auto extends Thread {
 
 
 			//forzar movimiento
-			//movet = 1;
+			movet = 0;
 
 			//ESTABLECIMIENTO DEL MOVETYPE
 			if(movet == 0){
@@ -256,7 +256,7 @@ public class auto extends Thread {
 	{
 		switch(this.move){
 		case DERECHA:
-			if(step == 1){ 
+			if(step == 0){ 
 
 				switch(esquina){
 				case 1:
@@ -278,13 +278,14 @@ public class auto extends Thread {
 
 			switch(step)
 			{
-			case 1: // step 1
+			case 2: // step 1
 
 				switch(esquina){
 				case 1:
 					corner.return_recurso(this, "ab");
 					break;
 				case 2:
+					System.out.println("devuelvo b");
 					corner.return_recurso(this, "bc");
 					break;
 				case 3:
@@ -296,13 +297,14 @@ public class auto extends Thread {
 				}
 
 				break;
-			case 2: // step 2
+			case 0: // step 2
 
 				switch(esquina){
 				case 1:
 					corner.return_recurso(this, "b");
 					break;
 				case 2:
+					System.out.println("devuelvo c");
 					corner.return_recurso(this, "c");
 					break;
 				case 3:
@@ -320,7 +322,7 @@ public class auto extends Thread {
 
 			switch(step)
 			{
-			case 1: // step 1
+			case 2: // step 1
 				switch(esquina){
 				case 1:
 					corner.return_recurso(this, "abc");
@@ -336,7 +338,7 @@ public class auto extends Thread {
 					break;
 				}
 				break;
-			case 2: // step 2
+			case 3: // step 2
 
 				switch(esquina){
 				case 1:
@@ -352,7 +354,7 @@ public class auto extends Thread {
 					corner.return_recurso(this, "ab");
 					break;
 				}
-			case 3: // step 3
+			case 0: // step 3
 
 				switch(esquina){
 				case 1:
