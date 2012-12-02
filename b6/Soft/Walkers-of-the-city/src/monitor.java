@@ -11,44 +11,28 @@ public class monitor {
 	private Cola[] acciones;
 	private ReentrantLock lock;
 	private static int[][] matriz_incidencia=
-		  {{0,0,1,0,0,0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0,0,0,0},
-		   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,-1,0,0,0,0,0},
-		   {0,1,0,0,0,0,0,0,0,0,0,0,0,1,-1,0,0,0,0,0,0,0,0,0},
-		   {0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,-1,0,0,0,0},
-		   {0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,0,0,0},
-		   {0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,-1,0,0,0,0,0,0,0,0},
-		   {0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,-1},
-		   {0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,-1,0,0},
-		   {0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0},
-		   {0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,-1,0},
-		   {0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,-1,0,0,0,0,0,0},
-		   {0,0,0,0,0,0,0,0,0,0,0,1,0,-1,0,0,0,0,0,0,0,0,0,0},
-		   {-1,-1,-1,0,0,0,0,0,-1,0,-1,-1,1,0,1,0,0,0,1,0,0,0,0,0},
-		   {0,-1,-1,-1,-1,-1,0,0,0,0,0,-1,0,0,0,1,0,0,0,1,1,0,0,0},
-		   {0,0,-1,0,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1},
-		   {0,0,0,0,0,-1,0,-1,-1,-1,-1,-1,0,1,0,0,0,1,0,0,0,0,1,0}};
-	public int[][] getMatriz_incidencia() {
-		return matriz_incidencia;
-	}
-
-
-
-
-
+		{{0,0,1,0,0,0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0,0,0,0},
+		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,-1,0,0,0,0,0},
+		{0,1,0,0,0,0,0,0,0,0,0,0,0,1,-1,0,0,0,0,0,0,0,0,0},
+		{0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,-1,0,0,0,0},
+		{0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,0,0,0},
+		{0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,-1,0,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,-1},
+		{0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,-1,0,0},
+		{0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,-1,0},
+		{0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,-1,0,0,0,0,0,0},
+		{0,0,0,0,0,0,0,0,0,0,0,1,0,-1,0,0,0,0,0,0,0,0,0,0},
+		{-1,-1,-1,0,0,0,0,0,-1,0,-1,-1,1,0,1,0,0,0,1,0,0,0,0,0},
+		{0,-1,-1,-1,-1,-1,0,0,0,0,0,-1,0,0,0,1,0,0,0,1,1,0,0,0},
+		{0,0,-1,0,-1,-1,-1,-1,-1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1},
+		{0,0,0,0,0,-1,0,-1,-1,-1,-1,-1,0,1,0,0,0,1,0,0,0,0,1,0}};
 	private int numero_antiguedad;
 	private int[] estado;
-	public int[] getEstado() {
-		return estado;
-	}
-
-
-
-
-
 	private HashMap<String,Integer> relacion_transicion_recurso_retornado;
 	private HashMap<String,Integer> relacion_transicion_secuencia;
 	private int[][] relacion_recurso_secuencia=
-		   {{1,0,0,0},
+		{{1,0,0,0},
 			{1,1,0,0},
 			{1,1,1,0},
 			{0,1,0,0},
@@ -60,6 +44,17 @@ public class monitor {
 			{0,0,0,1},
 			{1,0,0,1},
 			{1,1,0,1}};
+	
+	/*-----------------------------------------------------------------------------------------*/
+	
+	public int[][] getMatriz_incidencia() {
+		return matriz_incidencia;
+	}
+
+	public int[] getEstado() {
+		return estado;
+	}
+
 	public monitor(){
 		lock=new ReentrantLock();
 		acciones=new Cola[12];
@@ -93,18 +88,6 @@ public class monitor {
 		relacion_transicion_recurso_retornado.put("cd",  21);
 		relacion_transicion_recurso_retornado.put("d",   22);
 		relacion_transicion_recurso_retornado.put("c",   23);
-
-		}
-		
-		
-		
-							
-		
-
-	
-
-	public void finalize() throws Throwable {
-
 	}
 
 	/**
@@ -112,64 +95,85 @@ public class monitor {
 	 * @param auto_llamador
 	 * @param secuencia_recurso
 	 */
-	public void return_recurso(auto auto_llamador, String secuencia_recurso){
+
+	public /*synchronized*/ void return_recurso(auto auto_llamador, String secuencia_recurso){
 		lock.lock();
+		//System.out.println("HOLAAA");
 		int tran=relacion_transicion_recurso_retornado.get(secuencia_recurso);
 		for(int i=0;i<16;i++){
 			estado[i]=estado[i]+matriz_incidencia[i][tran];
 		}
 		int[] disps=get_recursos_disponibles();
 		int inanib=buscar_inanibido();
-		
+
 		if(inanib!=15){
-			
+
 			if(check_liberacion_inanibido(inanib))
-			{
-				acciones[inanib].eliminar().notify();
+			{ 
+				auto f = acciones[inanib].eliminar();
+				synchronized (f) 
+				{
+					f.notify();
+				}
 				return;
 			}
 			disps=recalcular_disponibles_con_inanibido(disps,inanib);
 		}
-		
-		int[] aux =obtener_acciones_posibles(disps);
+
+		int[] aux = obtener_acciones_posibles(disps);
 		if(aux==null)
 		{
+			/*System.out.println("CHAU");
+			for(int i=0; i<disps.length; i++)
+				System.out.println(disps[i]);*/
+			System.out.println("CHAU");
 			lock.unlock();
 			return;
 		}
-		Cola xua=get_cola_max_prioridad(aux);
-		xua.eliminar().notify();
-		return;
+		Cola xua = get_cola_max_prioridad(aux);
+		auto f = xua.eliminar();
+		synchronized (f)
+		{
+			/*if(!xua.esVacia())*/ f.notify();
 		}
+		return;
+	}
 
 	/**
 	 * 
 	 * @param auto_llamador
 	 * @param secuencia
-	 
+
 	 */
-	public void reservar_recursos(auto auto_llamador, String secuencia) throws InterruptedException{
+	public /*synchronized*/ void reservar_recursos(auto auto_llamador, String secuencia) throws InterruptedException
+	{
+		System.out.println("okok" + auto_llamador.toString());
 		lock.lock();
+		System.out.println(auto_llamador.toString());
 		int tran=relacion_transicion_secuencia.get(secuencia);
 		sacar_numero(auto_llamador);
 		int[] disps=get_recursos_disponibles();
 		int inanib=buscar_inanibido();
-		
+
 		if(inanib!=15){
-			
+
 			disps=recalcular_disponibles_con_inanibido(disps,inanib);
 		}
-			
-		
+
+
 		if(check_recursos_disponibles(disps, tran))
 			tomar_recursos(tran);
 		else{
 			acciones[tran].adicionar(auto_llamador);
-			//lock.unlock();
-			wait();
-			tomar_recursos(tran);
+			lock.unlock();
+			synchronized (auto_llamador)
+			{
+				auto_llamador.wait();
+				tomar_recursos(tran);
+				lock.unlock();
 			}
 		}
+	}
 
 
 
@@ -199,11 +203,11 @@ public class monitor {
 					else
 						if(acciones[i].get_primer().get_numero_antiguedad() < acciones[a].get_primer().get_numero_antiguedad())
 							a=i;
-				
-			
+
+
 				}	
 			}
-			
+
 		}	
 		return a;
 	}
@@ -234,7 +238,7 @@ public class monitor {
 		int[]posibles = null;
 		int xua=0,aux;
 		for(int i=0;i<12;i++){
-			 aux=1;
+			aux=1;
 			for (int j=0;j<4;j++){
 				if(relacion_recurso_secuencia[i][j]==1)
 					if(disps[j]==0)
@@ -242,13 +246,14 @@ public class monitor {
 			}
 			if(aux==1){
 				if(!acciones[i].esVacia()){
-				if(posibles==null)posibles=new int[12];
-				posibles[xua]=i;
-				xua++;
+					System.out.println("lalalalal");
+					if(posibles==null)posibles=new int[12];
+					posibles[xua]=i;
+					xua++;
 				}
 			}
-			
-			
+
+
 		}
 		return posibles;
 	}
@@ -263,8 +268,8 @@ public class monitor {
 		for(int i=0;i<4;i++){
 			aux[i]=disp[i]-relacion_recurso_secuencia[inanib][i];
 		}
-		
-		
+
+
 		return aux;
 	}
 
@@ -275,7 +280,7 @@ public class monitor {
 	private void sacar_numero(auto auto_llamador){
 		auto_llamador.set_numero_antiguedad(this.numero_antiguedad);
 		this.numero_antiguedad++;
-		}
+	}
 
 
 
@@ -289,7 +294,7 @@ public class monitor {
 			if(aux.getPrioridad()<acciones[colas[i]].getPrioridad())
 				aux=acciones[colas[i]];
 		}
-			
+
 		return aux;
 	}
 
@@ -312,7 +317,6 @@ public class monitor {
 		for(int i=0;i<16;i++){
 			estado[i]=estado[i]+matriz_incidencia[i][tran];
 		}
-		lock.unlock();
 
 	}
 
