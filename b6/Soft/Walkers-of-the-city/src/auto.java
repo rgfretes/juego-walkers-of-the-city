@@ -219,48 +219,53 @@ public class auto extends Thread {
 		{
 		case DERECHA:
 			switch(esquina){
-			case 1:
+			case 1:System.out.println("reservar a");
 				corner.reservar_recursos(this, "a");
+				
 				break;
-			case 2:
+			case 2:System.out.println("reservar b");
 				corner.reservar_recursos(this, "b");
+				
 				break;
 			case 3:
+				System.out.println("reservar c");
 				corner.reservar_recursos(this, "c");
+				
 				break;
-			case 4:
+			case 4:System.out.println("reservar d");
 				corner.reservar_recursos(this, "d");
+				
 				break;
 			}
 			break;
 		case  DERECHO:
 			switch(esquina){
-			case 1:
+			case 1:System.out.println("reservar ab");
 				corner.reservar_recursos(this, "ab");
 				break;
-			case 2:
+			case 2:System.out.println("reservar bc");
 				corner.reservar_recursos(this, "bc");
 				break;
-			case 3:
+			case 3:System.out.println("reservar cd");
 				corner.reservar_recursos(this, "cd");
 				break;
-			case 4:
+			case 4:System.out.println("reservar da");
 				corner.reservar_recursos(this, "da");
 				break;
 			}
 			break;
 		case IZQUIERDA:
 			switch(esquina){
-			case 1:
+			case 1:System.out.println("reservar abc");
 				corner.reservar_recursos(this, "abc");
 				break;
-			case 2:
+			case 2:System.out.println("reservar bcd");
 				corner.reservar_recursos(this, "bcd");
 				break;
-			case 3:
+			case 3:System.out.println("reservar cda");
 				corner.reservar_recursos(this, "cda");
 				break;
-			case 4:
+			case 4:System.out.println("reservar dab");
 				corner.reservar_recursos(this, "dab");
 				break;
 			}
@@ -275,16 +280,16 @@ public class auto extends Thread {
 			if(step == 2){ 
 
 				switch(esquina){
-				case 1:
+				case 1:System.out.println("devuelvo a");
 					corner.return_recurso(this, "a");
 					break;
-				case 2:
+				case 2:System.out.println("devuelvo a");
 					corner.return_recurso(this, "b");
 					break;
-				case 3:
+				case 3:System.out.println("devuelvo a");
 					corner.return_recurso(this, "c");
 					break;
-				case 4:
+				case 4:System.out.println("devuelvo a");
 					corner.return_recurso(this, "d");
 					break;
 				}
@@ -297,18 +302,18 @@ public class auto extends Thread {
 			case 2: // step 1
 
 				switch(esquina){
-				case 1:
+				case 1:System.out.println("devuelvo ab");
 					//System.out.println("devuelvo a");
 					corner.return_recurso(this, "ab");
 					break;
-				case 2:
+				case 2:System.out.println("devuelvo bc");
 					//System.out.println("devuelvo b");
 					corner.return_recurso(this, "bc");
 					break;
-				case 3:
+				case 3:System.out.println("devuelvo cd");
 					corner.return_recurso(this, "cd");
 					break;
-				case 4:
+				case 4:System.out.println("devuelvo da");
 					//System.out.println("devuelvo d");
 					corner.return_recurso(this, "da");
 					break;
@@ -318,19 +323,19 @@ public class auto extends Thread {
 			case 3: // step 2
 
 				switch(esquina){
-				case 1:
+				case 1:System.out.println("devuelvo b");
 					//System.out.println("devuelvo b");
 					corner.return_recurso(this, "b");
 					break;
-				case 2:
+				case 2:System.out.println("devuelvo c");
 					//System.out.println("devuelvo c");
 					corner.return_recurso(this, "c");
 					break;
-				case 3:
+				case 3:System.out.println("devuelvo d");
 					//System.out.println("devuelvo d");
 					corner.return_recurso(this, "d");
 					break;
-				case 4:
+				case 4:System.out.println("devuelvo a");
 					//System.out.println("devuelvo a");
 					corner.return_recurso(this, "a");
 					break;
@@ -345,16 +350,16 @@ public class auto extends Thread {
 			{
 			case 2: // step 1
 				switch(esquina){
-				case 1:
+				case 1:System.out.println("devuelvo abc");
 					corner.return_recurso(this, "abc");
 					break;
-				case 2:
+				case 2:System.out.println("devuelvo bcd");
 					corner.return_recurso(this, "bcd");
 					break;
-				case 3:
+				case 3:System.out.println("devuelvo cda");
 					corner.return_recurso(this, "cda");
 					break;
-				case 4:
+				case 4:System.out.println("devuelvo dab");
 					corner.return_recurso(this, "dab");
 					break;
 				}
@@ -362,32 +367,32 @@ public class auto extends Thread {
 			case 3: // step 2
 
 				switch(esquina){
-				case 1:
+				case 1:System.out.println("devuelvo bc");
 					corner.return_recurso(this, "bc");
 					break;
-				case 2:
+				case 2:System.out.println("devuelvo cd");
 					corner.return_recurso(this, "cd");
 					break;
-				case 3:
+				case 3:System.out.println("devuelvo da");
 					corner.return_recurso(this, "da");
 					break;
-				case 4:
+				case 4:System.out.println("devuelvo ab");
 					corner.return_recurso(this, "ab");
 					break;
 				}
 			case 4: // step 3
 
 				switch(esquina){
-				case 1:
+				case 1:System.out.println("devuelvo c aca");
 					corner.return_recurso(this, "c");
 					break;
-				case 2:
+				case 2:System.out.println("devuelvo d aca");
 					corner.return_recurso(this, "d");
 					break;
-				case 3:
+				case 3:System.out.println("devuelvo a axa");
 					corner.return_recurso(this, "a");
 					break;
-				case 4:
+				case 4:System.out.println("devuelvo b aca");
 					corner.return_recurso(this, "b");
 					break;
 				}

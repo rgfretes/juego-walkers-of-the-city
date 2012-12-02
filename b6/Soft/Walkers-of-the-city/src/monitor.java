@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -9,7 +10,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class monitor {
 
 	private Cola[] acciones;
-	private ReentrantLock lock;
+	private Semaphore lock;
 	private static int[][] matriz_incidencia=
 		{{0,0,1,0,0,0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0,0,0,0},
 		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,-1,0,0,0,0,0},
@@ -56,7 +57,7 @@ public class monitor {
 	}
 
 	public monitor(){
-		lock=new ReentrantLock();
+		lock=new Semaphore(1,true);
 		acciones=new Cola[12];
 		for(int i=0;i<12;i++)
 			acciones[i]=new Cola(i%3);
@@ -65,6 +66,7 @@ public class monitor {
 		this.estado=estado;
 		relacion_transicion_secuencia= new HashMap<String, Integer>();
 		relacion_transicion_recurso_retornado= new HashMap<String, Integer>();
+		relacion_transicion_secuencia.put("a",  0);
 		relacion_transicion_secuencia.put("ab",  1);
 		relacion_transicion_secuencia.put("abc", 2);
 		relacion_transicion_secuencia.put("b",   3);
@@ -97,24 +99,28 @@ public class monitor {
 	 */
 
 	public /*synchronized*/ void return_recurso(auto auto_llamador, String secuencia_recurso){
-		lock.lock();
+		try {
+			lock.acquire();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//System.out.println("HOLAAA");
 		int tran=relacion_transicion_recurso_retornado.get(secuencia_recurso);
 		for(int i=0;i<16;i++){
 			estado[i]=estado[i]+matriz_incidencia[i][tran];
 		}
 		int[] disps=get_recursos_disponibles();
+		//for(int i=0; i<estado.length; i++)
+			//System.out.println(estado[i]);
 		int inanib=buscar_inanibido();
 
 		if(inanib!=15){
 
 			if(check_liberacion_inanibido(inanib))
 			{ 
-				auto f = acciones[inanib].eliminar();
-				synchronized (f) 
-				{
-					f.notify();
-				}
+				acciones[inanib].eliminar();
+				
 				return;
 			}
 			disps=recalcular_disponibles_con_inanibido(disps,inanib);
@@ -123,19 +129,16 @@ public class monitor {
 		int[] aux = obtener_acciones_posibles(disps);
 		if(aux==null)
 		{
-			/*System.out.println("CHAU");
-			for(int i=0; i<disps.length; i++)
-				System.out.println(disps[i]);*/
-			System.out.println("CHAU");
-			lock.unlock();
+			//System.out.println("CHAU");
+			//for(int i=0; i<disps.length; i++)
+				//System.out.println(disps[i]);
+			//System.out.println("CHAU");
+			lock.release();
 			return;
 		}
 		Cola xua = get_cola_max_prioridad(aux);
-		auto f = xua.eliminar();
-		synchronized (f)
-		{
-			/*if(!xua.esVacia())*/ f.notify();
-		}
+		 xua.eliminar();
+		 System.out.println("aca");
 		return;
 	}
 
@@ -148,7 +151,7 @@ public class monitor {
 	public /*synchronized*/ void reservar_recursos(auto auto_llamador, String secuencia) throws InterruptedException
 	{
 		System.out.println("okok" + auto_llamador.toString());
-		lock.lock();
+		lock.acquire();
 		System.out.println(auto_llamador.toString());
 		int tran=relacion_transicion_secuencia.get(secuencia);
 		sacar_numero(auto_llamador);
@@ -161,16 +164,18 @@ public class monitor {
 		}
 
 
-		if(check_recursos_disponibles(disps, tran))
+		if(check_recursos_disponibles(disps, tran)){
 			tomar_recursos(tran);
+			lock.release();
+		}
 		else{
 			acciones[tran].adicionar(auto_llamador);
-			lock.unlock();
+			lock.release();
 			synchronized (auto_llamador)
 			{
 				auto_llamador.wait();
 				tomar_recursos(tran);
-				lock.unlock();
+				lock.release();
 			}
 		}
 	}
