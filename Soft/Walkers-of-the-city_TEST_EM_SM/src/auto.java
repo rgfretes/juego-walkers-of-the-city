@@ -1,6 +1,6 @@
 import java.util.Random;
 public class auto extends Thread {
-	
+
 	public static int cont_choques=0;
 	private mapa map;
 	private coords pos;
@@ -178,14 +178,14 @@ public class auto extends Thread {
 			// obtencion de monitor indicado
 			//mont = map.get_cruce(pos);
 
-			solicitar_recursos();
+			//solicitar_recursos();
 			
 		}
 		// realizo el movimiento
 		switch(this.move){
 		case DERECHA:
 			mov_derecha();
-			devolver_recurso();
+			//devolver_recurso();
 			if(step==2){
 				step=0;
 				move = movetype.COMON;
@@ -194,7 +194,7 @@ public class auto extends Thread {
 		case DERECHO:
 			mov_derecho();
 			//System.out.println("\n en movesomhow() step="+step);
-			devolver_recurso();
+			//devolver_recurso();
 			if(step==3){
 				step=0;
 				move = movetype.COMON;
@@ -202,14 +202,14 @@ public class auto extends Thread {
 			break;
 		case IZQUIERDA:
 			mov_izquierda();
-			devolver_recurso();
+			//devolver_recurso();
 			if(step==4){
 				step=0;
 				move = movetype.COMON;
 			}
 			break;    
 		}
-		//System.out.println("step="+step);
+
 		if( map.refresh(anty,antx,pos.get_posy(),pos.get_posx(),this) && step != 0) cont_choques++;
 	}
 
