@@ -105,19 +105,19 @@ public class monitor {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("HOLAAA");
+		//System.out.println("HOLAAA");
 		int tran=relacion_transicion_recurso_retornado.get(secuencia_recurso);
 		for(int i=0;i<16;i++){
 			estado[i]=estado[i]+matriz_incidencia[i][tran];
 		}
 		int[] disps=get_recursos_disponibles();
-		for(int i=0; i<estado.length; i++)
-			System.out.println(estado[i]);
+		//for(int i=0; i<estado.length; i++)
+			//System.out.println(estado[i]);
 		int inanib=buscar_inanibido();
 
 		if(inanib!=15){
 
-			if(check_liberacion_inanibido(inanib))
+			if(check_recursos_disponibles(disps,inanib))
 			{ 
 				acciones[inanib].eliminar();
 				
@@ -135,10 +135,10 @@ public class monitor {
 			//System.out.println("CHAU");
 			lock.release();
 			return;
-		} System.out.println("aca1");
+		} //System.out.println("aca1");
 		Cola xua = get_cola_max_prioridad(aux);
 		 xua.eliminar();
-		 System.out.println("aca");
+		 //System.out.println("aca");
 		return;
 	}
 
@@ -227,9 +227,6 @@ public class monitor {
 	 * 
 	 * @param inanibido
 	 */
-	private Boolean check_liberacion_inanibido(int inanibido){
-		return null;
-	}
 
 	private int[] get_recursos_disponibles(){
 		int[] aux={estado[12],estado[13],estado[14],estado[15]};
@@ -252,7 +249,7 @@ public class monitor {
 			}
 			if(aux==1){
 				if(!acciones[i].esVacia()){
-					System.out.println("lalalalal");
+					//System.out.println("lalalalal");
 					if(posibles==null)posibles=new int[12];
 					posibles[xua]=i;
 					xua++;
