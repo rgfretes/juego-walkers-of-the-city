@@ -4,7 +4,8 @@ import javax.swing.JPanel;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class DibujaPanel extends JPanel {
-
+	
+	//public static int cont_choques=0;
 	private int[][] posiciones;
 	/*
 	 * -1 --> inaacesible
@@ -54,8 +55,10 @@ public class DibujaPanel extends JPanel {
 				}
 				else if(posiciones[i][j] > 1)
 				{
-					g.setColor( Color.red );
+					g.setColor( Color.orange );
 					g.fillRect( j*ancho/posiciones.length + ancho/posiciones.length/2 - ancho/15/2, i*alto/posiciones.length + alto/posiciones.length/2 - alto/15/2, ancho/15, alto/15 );
+					/*if((i==5 || i==6) && (j==5 || j==6))
+						cont_choques++;*/
 				}
 				
 			}
