@@ -37,9 +37,8 @@ public class mapa {
 		//show_map();
 	}
 	
-	public boolean refresh(int anty, int antx, int newy, int newx, auto a)
+	public void refresh(int anty, int antx, int newy, int newx, auto a)
 	{
-		boolean choque = false;
 		ArrayList<auto> autos_en_pos;
 		
 		autos_en_pos = mapa.get( (new coords(antx, anty)).toString() );
@@ -49,7 +48,6 @@ public class mapa {
 		autos_en_pos = mapa.get( (new coords(newx, newy)).toString() );
 		if(autos_en_pos != null)
 		{	//coloco el auto en el mapa
-			choque = !autos_en_pos.isEmpty();
 			autos_en_pos.add(a);
 		}
 		else
@@ -61,7 +59,6 @@ public class mapa {
 		
 		interfaz.refresh(anty, antx, newy, newx);
 		//show_map();
-		return choque;
 	}
 	
 	private void show_map()
