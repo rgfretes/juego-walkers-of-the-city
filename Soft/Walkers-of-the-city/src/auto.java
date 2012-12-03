@@ -185,6 +185,7 @@ public class auto extends Thread {
 		switch(this.move){
 		case DERECHA:
 			mov_derecha();
+			if( map.refresh(anty,antx,pos.get_posy(),pos.get_posx(),this) && step != 2) cont_choques++;
 			devolver_recurso();
 			if(step==2){
 				step=0;
@@ -193,7 +194,7 @@ public class auto extends Thread {
 			break;
 		case DERECHO:
 			mov_derecho();
-			//System.out.println("\n en movesomhow() step="+step);
+			if( map.refresh(anty,antx,pos.get_posy(),pos.get_posx(),this) && step != 3) cont_choques++;
 			devolver_recurso();
 			if(step==3){
 				step=0;
@@ -202,6 +203,7 @@ public class auto extends Thread {
 			break;
 		case IZQUIERDA:
 			mov_izquierda();
+			if( map.refresh(anty,antx,pos.get_posy(),pos.get_posx(),this) && step != 4) cont_choques++;
 			devolver_recurso();
 			if(step==4){
 				step=0;
@@ -210,7 +212,6 @@ public class auto extends Thread {
 			break;    
 		}
 		//System.out.println("step="+step);
-		if( map.refresh(anty,antx,pos.get_posy(),pos.get_posx(),this) && step != 0) cont_choques++;
 	}
 
 	private void solicitar_recursos() throws InterruptedException
