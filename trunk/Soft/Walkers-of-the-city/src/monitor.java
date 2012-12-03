@@ -114,7 +114,8 @@ public class monitor {
 		//for(int i=0; i<estado.length; i++)
 			//System.out.println(estado[i]);
 		int inanib=buscar_inanibido();
-
+		
+		//System.out.println(inanib);
 		if(inanib!=15){
 
 			if(check_recursos_disponibles(disps,inanib))
@@ -269,7 +270,8 @@ public class monitor {
 	private int[] recalcular_disponibles_con_inanibido(int[] disp, int inanib){
 		int[] aux = {0,0,0,0};
 		for(int i=0;i<4;i++){
-			aux[i]=disp[i]-relacion_recurso_secuencia[inanib][i];
+			if(disp[i]==1)
+				if(relacion_recurso_secuencia[inanib][i]==1)disp[i]=0;
 		}
 
 
