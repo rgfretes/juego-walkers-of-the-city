@@ -1,0 +1,30 @@
+
+Gather external references for later resolution
+Deleting existing packages from model
+Importing Model from XMI
+Root Package: Mapa
+Add Classifier: Sopa_letras
+Add Classifier: Interface1
+Add Classifier: EsquinaSemaforo
+Add Classifier: Partida
+Add Classifier: Jugador
+Add Classifier: Monitor
+Add Classifier: Mapa_ciudad
+Add Classifier: Partida
+Add Classifier: Esquina
+Add Classifier: Mapa
+Add Classifier Role: Mapa de monitores
+Append Package: Mapa de monitores
+Resolving Classifiers
+Resolving Owners
+Resolve Package Links
+Add Extensions
+Add Diagrams
+Adding Diagram : Mapa
+Resolving DiagramIDs
+Resolving Association Classes
+Resolving Parameter Types
+Resolving Attribute Types
+Resolving Note links
+Fixup external references
+Import Complete!

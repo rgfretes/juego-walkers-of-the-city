@@ -1,0 +1,27 @@
+Exporting package to 'D:\facu\Software\TP final software\Nuestro trabajo\subversion\branches\icaio\branch7-class\clases-modelo.xml'
+Retrieving data for export: diagram elements
+Retrieving data for export: links
+Retrieving data for export: constraints
+Retrieving data for export: attribute tagged values
+Retrieving data for export: operation tagged values
+Retrieving data for export: operation parameter tagged values
+Retrieving data for export: connector tagged values
+Completed data retrieval
+Pre-processing export tree...
+Completed pre-processing
+Processing package: Mapa
+Element:0: Sopa_letras
+Element:1: Interface1
+Element:2: EsquinaSemaforo
+Element:3: Partida
+Element:4: Jugador
+Element:5: Monitor
+Element:6: Mapa_ciudad
+Element:7: Partida
+Element:8: Esquina
+Element:9: Mapa de monitores
+Element:10: Mapa
+Diagram: Mapa
+Processing package: Mapa de monitores
+Formatting output XML...please wait
+XMI Document Export Complete!
