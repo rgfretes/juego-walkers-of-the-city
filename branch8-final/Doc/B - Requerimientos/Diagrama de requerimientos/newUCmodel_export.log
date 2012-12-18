@@ -1,0 +1,47 @@
+Exporting package to 'D:\TiTo\Facultad\Ingeniera de Software\Walkers of the city\branches\tito\b2\Doc\B - Requerimientos\Diagrama de requerimientos\newUCmodel.xml'
+Retrieving data for export: diagram elements
+Retrieving data for export: links
+Retrieving data for export: constraints
+Retrieving data for export: attribute tagged values
+Retrieving data for export: operation tagged values
+Retrieving data for export: operation parameter tagged values
+Retrieving data for export: connector tagged values
+Completed data retrieval
+Pre-processing export tree...
+Completed pre-processing
+Processing package: Use Case Model
+Element:0: $help://use_case_model_pattern.htm
+Element:1: Actors
+Element:2: $help://actor.htm
+Element:3: 
+Element:4: $help://usecasediagram.htm
+Element:5: Note
+Element:6: 
+Element:7: Primary Use Cases
+Diagram: Use Case Model
+Processing package: Actors
+Element:8: User
+Diagram: Actors
+Processing package: Primary Use Cases
+Element:9: Indicar donde se encuentra la palabra
+Element:10: Jugar con sopa de letras
+Element:11: Definir parametros de partida
+Element:12: Control de semaforos por cruce
+Element:13: Abandonar partida
+Element:14: Crear y configurar autos
+Element:15: Autos
+Element:16: Unirse a partida
+Element:17: Completar partida
+Element:18: Iniciar partida
+Element:19: Crear y configurar semaforos
+Element:20: Moverse por la ciudad
+Element:21: Ver tabla de resultados
+Element:22: Semaforos
+Element:23: Jugar en la ciudad
+Element:24: No chocar en cruces
+Element:25: Moverse por la ciudad
+Element:26: Crear partida
+Element:27: System Boundary
+Diagram: Primary Use Cases
+Formatting output XML...please wait
+XMI Document Export Complete!

@@ -1,0 +1,48 @@
+
+Importing Model from XMI
+Root Package: Use Case Model
+Add Classifier: $help://use_case_model_pattern.htm
+Add Classifier: $help://actor.htm
+Add Classifier: 
+Add Classifier: $help://usecasediagram.htm
+Add Classifier: Note
+Add Classifier: 
+Add Classifier Role: Actors
+Add Classifier Role: Primary Use Cases
+Append Package: Actors
+Add Classifier: User
+Append Package: Primary Use Cases
+Add Classifier: Indicar donde se encuentra la palabra
+Add Classifier: Jugar con sopa de letras
+Add Classifier: Definir parametros de partida
+Add Classifier: Control de semaforos por cruce
+Add Classifier: Abandonar partida
+Add Classifier: Crear y configurar autos
+Add Classifier: Autos
+Add Classifier: Unirse a partida
+Add Classifier: Completar partida
+Add Classifier: Iniciar partida
+Add Classifier: Crear y configurar semaforos
+Add Classifier: Moverse por la ciudad
+Add Classifier: Ver tabla de resultados
+Add Classifier: Semaforos
+Add Classifier: Jugar en la ciudad
+Add Classifier: No chocar en cruces
+Add Classifier: Moverse por la ciudad
+Add Classifier: Crear partida
+Add Classifier Role: System Boundary
+Resolving Classifiers
+Resolving Owners
+Resolve Package Links
+Add Extensions
+Add Diagrams
+Adding Diagram : Use Case Model
+Adding Diagram : Actors
+Adding Diagram : Primary Use Cases
+Resolving DiagramIDs
+Resolving Association Classes
+Resolving Parameter Types
+Resolving Attribute Types
+Resolving Note links
+Fixup external references
+Import Complete!
