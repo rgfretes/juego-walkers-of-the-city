@@ -1,0 +1,80 @@
+Exporting package to 'D:\TiTo\Facultad\Ingeniera de Software\Walkers of the city\branches\tito\b2\Doc\B - Requerimientos\Diagrama de requerimientos\newDVmodel.xml'
+Retrieving data for export: diagram elements
+Retrieving data for export: links
+Retrieving data for export: constraints
+Retrieving data for export: attribute tagged values
+Retrieving data for export: operation tagged values
+Retrieving data for export: operation parameter tagged values
+Retrieving data for export: connector tagged values
+Completed data retrieval
+Pre-processing export tree...
+Completed pre-processing
+Processing package: Dynamic View
+Element:0: 
+Element:1: 
+Element:2: 
+Element:3: 
+Element:4: 
+Element:5: 
+Element:6: Mapa
+Element:7: MetaMonitor
+Element:8: Ubicacion del usuario en punto de inicio
+Element:9: Unirse a partida
+Element:10: Crear Partida
+Element:11: 
+Element:12: 
+Element:13: Iniciar partida
+Element:14: Cruce
+Element:15: 
+Element:16: Jugar en sopa de letras
+Element:17: Semaforo
+Element:18: 
+Element:19: 
+Element:20: Iniciar partida
+Element:21: Activity1
+Element:22: 
+Element:23: Game Master
+Element:24: 
+Element:25: Monitor
+Element:26: 
+Element:27: 
+Element:28: Movimiento en el mapa(autos)
+Element:29: 
+Element:30: 
+Element:31: 
+Element:32: Mostrar resultados
+Element:33: Auto
+Element:34: 
+Element:35: car
+Element:36: ActivityInitial
+Element:37: 
+Element:38: 
+Element:39: Auto
+Element:40: Monitor
+Element:41: Server
+Element:42: 
+Element:43: Client
+Element:44: detencion en esquina
+Element:45: Mapa
+Element:46: generar 50 autos
+Element:47: Player
+Element:48: 
+Element:49: Movimiento en el mapa
+Element:50: Graphic Interface
+Element:51: 
+Element:52: 
+Element:53: 
+Element:54: Espera de jugadores
+Element:55: Jugar en el mapa
+Diagram: create_join_game
+Diagram: create_start_game
+Diagram: move_in_the_city
+Diagram: refresh_GI
+Diagram: move_car
+Diagram: soup
+Diagram: general
+Diagram: juego_en_el_mapa
+Diagram: movimiento_auto
+Diagram: movimiento_auto_2
+Formatting output XML...please wait
+XMI Document Export Complete!

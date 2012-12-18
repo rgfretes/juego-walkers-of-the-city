@@ -1,0 +1,34 @@
+Exporting package to 'D:\TiTo\Facultad\Ingeniera de Software\Walkers of the city\branches\tito\b2\Doc\B - Requerimientos\Diagrama de requerimientos\moverseporlacity.xml'
+Retrieving data for export: diagram elements
+Retrieving data for export: links
+Retrieving data for export: constraints
+Retrieving data for export: attribute tagged values
+Retrieving data for export: operation tagged values
+Retrieving data for export: operation parameter tagged values
+Retrieving data for export: connector tagged values
+Completed data retrieval
+Pre-processing export tree...
+Completed pre-processing
+Processing package: Dynamic Viewss
+Element:0: 
+Element:1: 
+Element:2: 
+Element:3: Mapa
+Element:4: 
+Element:5: Cruce
+Element:6: 
+Element:7: Semaforo
+Element:8: 
+Element:9: 
+Element:10: 
+Element:11: 
+Element:12: Auto
+Element:13: Auto
+Element:14: Monitor
+Element:15: Mapa
+Element:16: 
+Element:17: 
+Diagram: Dynamic View
+Diagram: movimiento_autos_2
+Formatting output XML...please wait
+XMI Document Export Complete!

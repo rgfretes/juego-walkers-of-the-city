@@ -1,0 +1,35 @@
+
+Importing Model from XMI
+Root Package: Dynamic Viewss
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier Role: Mapa
+Add Classifier Role: Cruce
+Add Classifier Role: Semaforo
+Add Classifier Role: Auto
+Add Classifier Role: Auto
+Add Classifier Role: Monitor
+Add Classifier Role: Mapa
+Resolving Classifiers
+Resolving Owners
+Resolve Package Links
+Add Extensions
+Add Diagrams
+Adding Diagram : Dynamic View
+Adding Diagram : movimiento_autos_2
+Resolving DiagramIDs
+Resolving Association Classes
+Resolving Parameter Types
+Resolving Attribute Types
+Resolving Note links
+Fixup external references
+Import Complete!
