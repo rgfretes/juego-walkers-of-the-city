@@ -1,0 +1,217 @@
+
+Importing Model from XMI
+Root Package: Dynamic View
+Add Classifier: 
+Add Classifier: 
+Add Classifier Role: Implementacion
+Add Classifier Role: Requerimientos
+Add State: 
+Add State: 
+Append Package: Implementacion
+Add Classifier: Cliente
+Add Classifier Role: Jugador
+Add Classifier Role: ControladorMasterServer
+Add Classifier Role: Concurrencia
+Add Classifier Role: Object1
+Add Classifier Role: AnalizadorMaster
+Add Classifier Role: AnalizadorMaster
+Add Classifier Role: AnalizadorMaster
+Add Classifier Role: Jugador
+Add Classifier Role: ControladorMasterServer
+Append Package: Concurrencia
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier Role: Cruce
+Add Classifier Role: vector_recursos[]
+Add Classifier Role: Cruce
+Add Classifier Role: Monitor
+Add Classifier Role: Cola de autos
+Add Classifier Role: posibles_moves[]
+Add Classifier Role: posibles_moves[]
+Add Classifier Role: Mapa
+Add Classifier Role: posible_movs[]
+Add Classifier Role: trans[]
+Add Classifier Role: Auto2
+Add Classifier Role: cola_starvation[]
+Add Classifier Role: Auto dormido
+Add Classifier Role: Auto
+Add Classifier Role: Object1
+Add Classifier Role: Auto3
+Add Classifier Role: Auto1
+Add State: Devuelvo lock
+Add State: De las colas de acciones posibles, obtener las colas que no estan vacias
+Add State: Devolver lock
+Add State: Sumar el vector del estado actual con el resultado de la actividad anterior
+Add State: Chequear los recursos que requiere el auto inanibido
+Add State: Bloquearse
+Add State: Calcular las colas de acciones posibles dados los recursos disponibles
+Add State: ¿necesita recurso que libero?
+Add State: Pedir lock
+Add State: devuelvo lock
+Add State: ¿Se puede ejecutar inanibido?
+Add State: Devolver recurso
+Add State: Multiplicar vector de disparo por la matriz de incidencia
+Add State: devuelvo lock
+Add State: ¿Requiere algunos de los recursos que requiero yo?
+Add State: Despertar
+Add State: Aumentar numero monitor
+Add State: Tomar lock
+Add State: get_max_priority_mov()
+Add State: Crear Partida
+Add State: Encolamiento correspondiente
+Add State: ¿Hay colas con posible estado de inanicion?
+Add State: Avisar que la transicion no se puede disparar ya que no estan disponibles los recursos necesarios.
+Add State: Calculate_posible_internal_transition()
+Add State: Tomo recurso
+Add State: ¿Hay alguna cola con posible estado de inanicion?
+Add State: Onbtener la cola cuya accion requiera de mayor cantidad de recursos para ejecutarse
+Add State: get_max_priority_mov()
+Add State: Aumentar numero monitor
+Add State: ¿se puede liberar starvated?
+Add State: Calcular las colas de acciones posibles dados los recursos disponibles en este estado
+Add State: Pedir lock
+Add State: Devulevo el lock
+Add State: Iniciar partida
+Add State: ¿tiene campos negativos?
+Add State: Checkear que el vector obtenido como resultado no tenga ningun campo negativo
+Add State: Tomar el hilo mas viejo
+Add State: Activity4
+Add State: ¿Recursos disponibles?
+Add State: Activity1
+Add State: Tomo recursos
+Add State: Tomar el hilo mas viejo
+Add State: Calcular proximo estado
+Add State: Calcular las colas de acciones posibles dados los recursos que yo necesito.
+Add State: Verificar disponibilidad de recursos
+Add State: Chequear inanicion
+Add State: De las colas de acciones posibles, obtener las colas que no estan vacias
+Add State: Sacar numero
+Add State: Devolver lock
+Add State: Despertar
+Add State: Onbtener la cola cuya accion requiera de mayor cantidad de recursos para ejecutarse
+Add State: ¿Hay colas con posible estado de inanicion?
+Add State: Sumar el resultado anterior con el vector del estado actual.
+Add State: Multiplicar la matriz de incidencia por el vector de disparo de la transicion correspondiente a la accion dada.
+Add State: Setear nuevo estado
+Add State: ¿Estan los recursos disponibles?
+Add State: Devuelvo lock
+Add State: Avisar que la transicion si se puede disparar
+Add State: 
+Add State: Tomo recursos
+Add State: check_queues()
+Add State: Verificar disponibilidad de recursos
+Add State: Obtener colas de acciones correspondientes a hilos que estan en posible estado de inanicion que utilicen alguno de los recursos disponibles.
+Add State: Obtener colas de acciones correspondientes a hilos que estan en posible estado de inanicion.
+Add State: ¿Existen colas con estados de inanicion?
+Add State: Despertar
+Add State: Quitar de los recursos disponibles, aquellos recursos que utilice el hilo mas viejo en posible estado de inanicion
+Add State: ¿Hay alguien para despertar?
+Add State: ¿hay alguna cola no vacia?
+Add State: SIN CAMBIAR EL VECTOR DE ESTADO (es decir usando una variable auxiliar) calcular los recursos disponibles a partir del vector de estado
+Add State: starvation()
+Add State: Sacar numero
+Add State: devuelvo lock
+Add State: Activity2
+Add State: Despertar
+Add State: Espera de jugadores
+Add State: Activity3
+Add State: unlock_some__thread()
+Add State: Devolver el lock
+Add State: Devolver recurso
+Add State: Establecer el vector que surje como resultado de la actividad anterior como el nuevo estado.
+Add State: Tomar lock
+Add State: devuelvo lock
+Append Package: Requerimientos
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier: Iniciar partida
+Add Classifier: 
+Add Classifier: 
+Add Classifier: Game Master
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier: Player
+Add Classifier: 
+Add Classifier: 
+Add Classifier: 
+Add Classifier Role: Mapa
+Add Classifier Role: MetaMonitor
+Add Classifier Role: Semaforo
+Add Classifier Role: Monitor
+Add Classifier Role: Auto
+Add Classifier Role: car
+Add Classifier Role: Auto
+Add Classifier Role: Monitor
+Add Classifier Role: Server
+Add Classifier Role: Client
+Add Classifier Role: Mapa
+Add Classifier Role: Graphic Interface
+Add State: 
+Add State: 
+Add State: 
+Add State: Ubicacion del usuario en punto de inicio
+Add State: Unirse a partida
+Add State: Jugar en sopa de letras
+Add State: 
+Add State: 
+Add State: 
+Add State: 
+Add State: Movimiento en el mapa(autos)
+Add State: 
+Add State: Mostrar resultados
+Add State: 
+Add State: ActivityInitial
+Add State: 
+Add State: 
+Add State: detencion en esquina
+Add State: generar 50 autos
+Add State: 
+Add State: Movimiento en el mapa
+Add State: Jugar en el mapa
+Resolving Classifiers
+Resolving Owners
+Resolve Package Links
+Add Extensions
+Add Diagrams
+Adding Diagram : Verificar_palabra
+Adding Diagram : Movimiento_jugador_mapa
+Adding Diagram : Implementacion
+Adding Diagram : movimiento_general_auto
+Adding Diagram : chequeo_transicion_disparable
+Adding Diagram : cambiar_estado
+Adding Diagram : politica_devolucion2
+Adding Diagram : politica_solicitud2
+Adding Diagram : despertarse
+Adding Diagram : solicitud Monitor
+Adding Diagram : devolucion Monitor
+Adding Diagram : locks
+Adding Diagram : create_join_game
+Adding Diagram : create_start_game
+Adding Diagram : move_in_the_city
+Adding Diagram : refresh_GI
+Adding Diagram : move_car
+Adding Diagram : soup
+Adding Diagram : general
+Adding Diagram : juego_en_el_mapa
+Adding Diagram : movimiento_auto
+Adding Diagram : movimiento_auto_2
+Adding Diagram : proceso_de_liberacion_recursos
+Resolving DiagramIDs
+Resolving Association Classes
+Resolving Parameter Types
+Resolving Attribute Types
+Resolving Note links
+Fixup external references
+Import Complete!
