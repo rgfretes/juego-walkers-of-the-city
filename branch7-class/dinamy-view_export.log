@@ -1,0 +1,216 @@
+Exporting package to 'D:\facu\Software\TP final software\Nuestro trabajo\subversion\branches\icaio\branch7-class\dinamy-view.xml'
+Retrieving data for export: diagram elements
+Retrieving data for export: links
+Retrieving data for export: constraints
+Retrieving data for export: attribute tagged values
+Retrieving data for export: operation tagged values
+Retrieving data for export: operation parameter tagged values
+Retrieving data for export: connector tagged values
+Completed data retrieval
+Pre-processing export tree...
+Completed pre-processing
+Processing package: Dynamic View
+Element:0: 
+Element:1: 
+Element:2: 
+Element:3: Implementacion
+Element:4: 
+Element:5: Requerimientos
+Processing package: Implementacion
+Element:6: Jugador
+Element:7: Cliente
+Element:8: ControladorMasterServer
+Element:9: Concurrencia
+Element:10: Object1
+Element:11: AnalizadorMaster
+Element:12: AnalizadorMaster
+Element:13: AnalizadorMaster
+Element:14: Jugador
+Element:15: ControladorMasterServer
+Diagram: Verificar_palabra
+Diagram: Movimiento_jugador_mapa
+Diagram: Implementacion
+Processing package: Concurrencia
+Element:16: Devuelvo lock
+Element:17: 
+Element:18: De las colas de acciones posibles, obtener las colas que no estan vacias
+Element:19: Cruce
+Element:20: 
+Element:21: Devolver lock
+Element:22: vector_recursos[]
+Element:23: Sumar el vector del estado actual con el resultado de la actividad anterior
+Element:24: Chequear los recursos que requiere el auto inanibido
+Element:25: Bloquearse
+Element:26: Calcular las colas de acciones posibles dados los recursos disponibles
+Element:27: ¿necesita recurso que libero?
+Element:28: Pedir lock
+Element:29: devuelvo lock
+Element:30: ¿Se puede ejecutar inanibido?
+Element:31: Devolver recurso
+Element:32: Multiplicar vector de disparo por la matriz de incidencia
+Element:33: devuelvo lock
+Element:34: ¿Requiere algunos de los recursos que requiero yo?
+Element:35: Despertar
+Element:36: Aumentar numero monitor
+Element:37: Tomar lock
+Element:38: get_max_priority_mov()
+Element:39: Crear Partida
+Element:40: Encolamiento correspondiente
+Element:41: ¿Hay colas con posible estado de inanicion?
+Element:42: Avisar que la transicion no se puede disparar ya que no estan disponibles los recursos necesarios.
+Element:43: Calculate_posible_internal_transition()
+Element:44: Tomo recurso
+Element:45: Cruce
+Element:46: Monitor
+Element:47: ¿Hay alguna cola con posible estado de inanicion?
+Element:48: Onbtener la cola cuya accion requiera de mayor cantidad de recursos para ejecutarse
+Element:49: get_max_priority_mov()
+Element:50: Aumentar numero monitor
+Element:51: ¿se puede liberar starvated?
+Element:52: Calcular las colas de acciones posibles dados los recursos disponibles en este estado
+Element:53: Pedir lock
+Element:54: 
+Element:55: Devulevo el lock
+Element:56: Iniciar partida
+Element:57: 
+Element:58: 
+Element:59: ¿tiene campos negativos?
+Element:60: Checkear que el vector obtenido como resultado no tenga ningun campo negativo
+Element:61: Tomar el hilo mas viejo
+Element:62: Activity4
+Element:63: Cola de autos
+Element:64: posibles_moves[]
+Element:65: posibles_moves[]
+Element:66: 
+Element:67: Mapa
+Element:68: ¿Recursos disponibles?
+Element:69: Activity1
+Element:70: posible_movs[]
+Element:71: Tomo recursos
+Element:72: 
+Element:73: Tomar el hilo mas viejo
+Element:74: Calcular proximo estado
+Element:75: Calcular las colas de acciones posibles dados los recursos que yo necesito.
+Element:76: Verificar disponibilidad de recursos
+Element:77: trans[]
+Element:78: Chequear inanicion
+Element:79: Auto2
+Element:80: De las colas de acciones posibles, obtener las colas que no estan vacias
+Element:81: Sacar numero
+Element:82: Devolver lock
+Element:83: cola_starvation[]
+Element:84: Despertar
+Element:85: Onbtener la cola cuya accion requiera de mayor cantidad de recursos para ejecutarse
+Element:86: 
+Element:87: 
+Element:88: ¿Hay colas con posible estado de inanicion?
+Element:89: Sumar el resultado anterior con el vector del estado actual.
+Element:90: Multiplicar la matriz de incidencia por el vector de disparo de la transicion correspondiente a la accion dada.
+Element:91: Setear nuevo estado
+Element:92: ¿Estan los recursos disponibles?
+Element:93: Devuelvo lock
+Element:94: Avisar que la transicion si se puede disparar
+Element:95: 
+Element:96: Tomo recursos
+Element:97: Auto dormido
+Element:98: check_queues()
+Element:99: Auto
+Element:100: Verificar disponibilidad de recursos
+Element:101: Obtener colas de acciones correspondientes a hilos que estan en posible estado de inanicion que utilicen alguno de los recursos disponibles.
+Element:102: Obtener colas de acciones correspondientes a hilos que estan en posible estado de inanicion.
+Element:103: ¿Existen colas con estados de inanicion?
+Element:104: Despertar
+Element:105: Quitar de los recursos disponibles, aquellos recursos que utilice el hilo mas viejo en posible estado de inanicion
+Element:106: ¿Hay alguien para despertar?
+Element:107: Object1
+Element:108: Auto3
+Element:109: ¿hay alguna cola no vacia?
+Element:110: SIN CAMBIAR EL VECTOR DE ESTADO (es decir usando una variable auxiliar) calcular los recursos disponibles a partir del vector de estado
+Element:111: starvation()
+Element:112: Sacar numero
+Element:113: devuelvo lock
+Element:114: Activity2
+Element:115: Despertar
+Element:116: Espera de jugadores
+Element:117: Activity3
+Element:118: unlock_some__thread()
+Element:119: Devolver el lock
+Element:120: 
+Element:121: Devolver recurso
+Element:122: Establecer el vector que surje como resultado de la actividad anterior como el nuevo estado.
+Element:123: Tomar lock
+Element:124: Auto1
+Element:125: devuelvo lock
+Element:126: 
+Diagram: movimiento_general_auto
+Diagram: chequeo_transicion_disparable
+Diagram: cambiar_estado
+Diagram: politica_devolucion2
+Diagram: politica_solicitud2
+Diagram: despertarse
+Diagram: solicitud Monitor
+Diagram: devolucion Monitor
+Diagram: locks
+Processing package: Requerimientos
+Element:127: 
+Element:128: 
+Element:129: 
+Element:130: 
+Element:131: 
+Element:132: Mapa
+Element:133: MetaMonitor
+Element:134: Ubicacion del usuario en punto de inicio
+Element:135: Unirse a partida
+Element:136: 
+Element:137: 
+Element:138: Iniciar partida
+Element:139: 
+Element:140: Jugar en sopa de letras
+Element:141: Semaforo
+Element:142: 
+Element:143: 
+Element:144: 
+Element:145: Game Master
+Element:146: 
+Element:147: Monitor
+Element:148: 
+Element:149: 
+Element:150: Movimiento en el mapa(autos)
+Element:151: 
+Element:152: 
+Element:153: 
+Element:154: Mostrar resultados
+Element:155: Auto
+Element:156: 
+Element:157: car
+Element:158: ActivityInitial
+Element:159: 
+Element:160: Auto
+Element:161: Monitor
+Element:162: Server
+Element:163: 
+Element:164: Client
+Element:165: detencion en esquina
+Element:166: Mapa
+Element:167: generar 50 autos
+Element:168: Player
+Element:169: 
+Element:170: Movimiento en el mapa
+Element:171: Graphic Interface
+Element:172: 
+Element:173: 
+Element:174: 
+Element:175: Jugar en el mapa
+Diagram: create_join_game
+Diagram: create_start_game
+Diagram: move_in_the_city
+Diagram: refresh_GI
+Diagram: move_car
+Diagram: soup
+Diagram: general
+Diagram: juego_en_el_mapa
+Diagram: movimiento_auto
+Diagram: movimiento_auto_2
+Diagram: proceso_de_liberacion_recursos
+Formatting output XML...please wait
+XMI Document Export Complete!
