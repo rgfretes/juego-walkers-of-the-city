@@ -1,0 +1,1 @@
+Es un juego multijugador basado en dos etapas. El jugador que supere las 2 etapas mas rapidamente sera el ganador. La primera etapa consta de resolver una sopa de letras. La segunda etapa consta de recorrer una ciudad virtual sin ser atropellado por los automoviles que circulan por la misma para llegar a un punto determinado.
